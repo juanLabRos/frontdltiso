@@ -1,36 +1,21 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Sistema de Evaluación de Cumplimiento de Normas ISO 27001 mediante Inteligencia Artificial
 
-## Getting Started
+## Introducción
+Este proyecto consiste en el desarrollo de un sistema basado en inteligencia artificial (IA) para facilitar la evaluación del cumplimiento de las normas ISO 27001 en organizaciones de diversos sectores. El sistema utiliza capacidades de IA para generar preguntas pertinentes y detalladas, permitiendo una evaluación exhaustiva del grado de cumplimiento de las normativas de seguridad de la información.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Funcionalidades
+Generación dinámica y adaptativa de preguntas relacionadas con las normas ISO 27001.
+Generación automática de apartados detallados, incluyendo políticas, procedimientos, análisis de riesgos y prácticas relacionadas con redes sociales.
+Generación de recomendaciones para fortalecer el cumplimiento de las normativas.
+Elaboración de informes detallados sobre el estado de cumplimiento.
+Visualización de métricas y tendencias a lo largo del tiempo.
+## Uso
+- Clona este repositorio en tu máquina local.
+- Ejecuta el sistema según las instrucciones proporcionadas en el archivo de documentación.
+- Responde las preguntas generadas por el sistema de IA.
+- Explora los apartados generados que muestran políticas, procedimientos, análisis de riesgos y prácticas relacionadas con redes sociales.
+- Utiliza las recomendaciones y los informes para mejorar el cumplimiento de las normativas en tu organización.
+## Requeriminetos
+- [x] [Node.js](https://nodejs.org) (+v18.x) installed.
+- [x] [npm](https://npmjs.com/) (v8+) installed.
+- [x] [Visual Studio Code](https://code.visualstudio.com) with the recommended extensions installed (ESLint, Prettier, Tailwind CSS IntelliSense).
