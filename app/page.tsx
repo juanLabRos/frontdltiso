@@ -1,16 +1,3 @@
-/*
-  
-  // tailwind.config.js
-  module.exports = {
-    // ...
-    plugins: [
-      // ...
-      require('@tailwindcss/forms'),
-    ],
-  }
-
-*/
-
 import Image from 'next/image'
 
 export default function Login() {
@@ -34,7 +21,7 @@ export default function Login() {
                 height={200}
               />
             </div>
-            <div className=" md:w-4/6 max-w-4xl lg:w-1/2 flex flex-col gap-3 items-center bg-black bg-opacity-50 md:bg-transparent px-4 py-6 ">
+            <div className=" md:w-4/6 max-w-4xl lg:w-1/2 flex flex-col gap-3 items-center bg-black bg-opacity-50 md:bg-transparent px-4 py-3 lg:py-6 ">
               <h2 className="mt-2 md:mt-6 text-center text-3xl tracking-wider font-bold leading-9 text-white">
                 Inicio Sesión
               </h2>
@@ -105,7 +92,7 @@ export default function Login() {
                 </div>
               </form>
             </div>
-            <div className="mt-2 md:mt-6 w-full md:w-6/12">
+            <div className="mt-2 md:mt-6 w-full md:w-9/12">
               <div className="flex justify-between">
                 <div className="w-1/3 border-t border-gray-200 mt-3" aria-hidden="true">
                 </div>
@@ -115,7 +102,7 @@ export default function Login() {
                 <div className="w-1/3 border-t border-gray-200 mt-3 " aria-hidden="true">
                 </div>
               </div>
-              <div className="mt-2 flex md:flex-col gap-4 flex-row">
+              <div className="mt-2 flex 2xl:flex-col gap-4 flex-row">
                   <a
                     href="#"
                     className="flex w-full items-center justify-center gap-3 rounded-md bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
