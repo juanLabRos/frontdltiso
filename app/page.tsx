@@ -22,31 +22,28 @@ export default function Login() {
         <body class="h-full">
         ```
       */}
-      <div className=' flex items-center justify-center min-h-screen flex-1 py-12 sm:px-6 lg:px-8'>
-        <div className=" flex justify-between w-11/12  sm:rounded-lg">
-          <div className=" sm:mx-auto sm:w-full sm:max-w-md  flex flex-col justify-center">
-            <Image
-              className="mx-auto w-4/5 "
-              width={500} height={0}
-              src="/dltcode_logo.webp"
-              alt="Your Company"
-            />
-            
-          </div>
-
-          <div className='border-4 rounded-xl'>
-
-          </div>
-
-          <div className="sm:mx-auto sm:w-full  sm:max-w-[480px]  ">
-            <h2 className="mt-6 text-center text-3xl tracking-wider	 font-bold leading-9  text-gray-300">
-              Log In
-            </h2>
-            <div className="bg-black px-6 py-6 shadow sm:rounded-lg  sm:px-12">
+      <div className='min-h-screen bg-white text-black'>
+        <div className='bg-vector bg-no-repeat bg-cover w-screen h-screen flex justify-center items-center'>
+          <div className=" flex items-center flex-col md:flex-row justify-center max-w-full text-white bg-transparent  w-11/12 md:w-5/6 lg:w-5/6 xl:w-11/12">
+            <div className="md:justify-start w-3/4 sm:w-2/4 md:w-1/3 lg:w-1/2 relative flex justify-center items-center ">
+              <Image
+                className="md:w-3/6  w-4/6 max-w-4xl  bg-white rounded-2xl"
+                src="/dltcode_logo.webp"
+                alt="Your Company"
+                width={500}
+                height={200}
+              />
+            </div>
+            <div className=" md:w-4/6 max-w-4xl lg:w-1/2 flex flex-col gap-3 items-center bg-black bg-opacity-50 md:bg-transparent px-4 py-6 ">
+              <h2 className="mt-2 md:mt-6 text-center text-3xl tracking-wider font-bold leading-9 text-white">
+                Inicio Sesión
+              </h2>
+              <h4 className='text-center text-white'>Introduce tu email para iniciar sesión en la página</h4>
+              <div className="mt-3 md:mt-6 w-10/12 max-w-md">
               <form className="space-y-6" action="#" method="POST">
-                <div>
-                  <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-300">
-                    Email address
+              <div>
+                  <label htmlFor="email" className="block text-sm font-medium leading-6">
+                    Correo electrónico
                   </label>
                   <div className="mt-2">
                     <input
@@ -55,14 +52,15 @@ export default function Login() {
                       type="email"
                       autoComplete="email"
                       required
+                      placeholder='email@domain.com'
                       className="block w-full indent-4  rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-300">
-                    Password
+                  <label htmlFor="password" className="block text-sm font-medium leading-6 text-white">
+                    Contraseña
                   </label>
                   <div className="mt-2">
                     <input
@@ -71,27 +69,28 @@ export default function Login() {
                       type="password"
                       autoComplete="current-password"
                       required
+                      placeholder='********'
                       className="block w-full indent-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     />
                   </div>
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <div className="flex items-center">
+                  <div className="flex ml-3 items-center">
                     <input
                       id="remember-me"
                       name="remember-me"
                       type="checkbox"
-                      className="h-4 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-600"
+                      className="h-1/2 w-4 rounded border-gray-300 text-teal-600 focus:ring-teal-600"
                     />
-                    <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-gray-300">
-                      Remember me
+                    <label htmlFor="remember-me" className="ml-3 block text-sm leading-6 text-white">
+                      Recuerdame
                     </label>
                   </div>
 
-                  <div className="text-sm leading-6">
-                    <a href="#" className= "underline font-semibold text-teal-700 hover:text-teal-500">
-                      Forgotten your password?
+                  <div className="text-sm leading-6 flex justify-end">
+                    <a href="#" className= "underline font-semibold text-right hover:text-customTeal-semidark">
+                      ¿Olvidaste la contraseña?
                     </a>
                   </div>
                 </div>
@@ -99,27 +98,27 @@ export default function Login() {
                 <div>
                   <button
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-teal-700 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-teal-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="flex w-full justify-center rounded-md bg-customTeal-dark px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-customTeal-semidark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-customTeal-semidark"
                   >
-                    Sign in
+                    Iniciar Sesión
                   </button>
                 </div>
               </form>
-
-              <div>
-                <div className="relative mt-9">
-                  <div className="absolute inset-0 flex items-center" aria-hidden="true">
-                    <div className="w-full border-t border-gray-200" />
-                  </div>
-                  <div className="relative flex justify-center text-sm font-medium leading-6">
-                    <span className="bg-gray-200  px-6 rounded-xl font-bold	 text-gray-900">Sign In With</span>
-                  </div>
+            </div>
+            <div className="mt-2 md:mt-6 w-full md:w-6/12">
+              <div className="flex justify-between">
+                <div className="w-1/3 border-t border-gray-200 mt-3" aria-hidden="true">
                 </div>
-
-                <div className="mt-6 grid grid-cols-2 gap-4">
+                <div className=" flex justify-center text-sm font-medium leading-6">
+                  <span className=" font-semibold  text-center"> O continua con</span>
+                </div>
+                <div className="w-1/3 border-t border-gray-200 mt-3 " aria-hidden="true">
+                </div>
+              </div>
+              <div className="mt-2 flex md:flex-col gap-4 flex-row">
                   <a
                     href="#"
-                    className="flex w-full items-center justify-center gap-3 rounded-full bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
+                    className="flex w-full items-center justify-center gap-3 rounded-md bg-gray-200 px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                   >
                     <svg className="h-5 w-5" aria-hidden="true" viewBox="0 0 24 24">
                       <path
@@ -144,7 +143,7 @@ export default function Login() {
 
                   <a
                     href="#"
-                    className="flex w-full items-center justify-center gap-3 rounded-full bg-gray-200  px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
+                    className="flex w-full items-center justify-center gap-3 rounded-md bg-gray-200  px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus-visible:ring-transparent"
                   >
                     <svg className="h-5 w-5 fill-[#24292F]" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20">
                       <path
@@ -153,18 +152,15 @@ export default function Login() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="text-sm font-semibold leading-6">GitHub</span>
+                    <span className="text-sm font-semibold leading-7">GitHub</span>
                   </a>
                 </div>
-                <div className="mt-6 ">
-                  <h3 className=' text-center'>Not have account? <a href='#' className=' ml-2 font-semibold underline text-teal-700 hover:text-teal-500'>Sign Up</a></h3>
-                </div>
-              </div>
             </div>
-
+          </div>
           </div>
         </div>
       </div>
+      
     </>
   )
 }

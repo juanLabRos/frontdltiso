@@ -12,7 +12,15 @@ const config: Config = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
+        "vector": "url('/vector.svg')",
       },
+      colors:{
+        customTeal:{
+          default:'#027A8B',
+          dark:'#004C56',
+          semidark: '#05616D',
+        }
+      }
     },
   },
   plugins: [],
