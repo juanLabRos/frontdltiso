@@ -21,10 +21,13 @@ export default function Header() {
                         </div>
                     </div>
                     <div className="flex ml-10">
-                        <Link className="px-2" href={`../dashboard/support`}>
+                        <Link className="px-3" href={`../dashboard/support`}>
                             <Image src="/tickets.png" alt="" width={60} height={20} />
                         </Link>
-                        <Link className="px-2" href={`../dashboard/ajustes`}>
+                        <Link className="px-3 pt-2" href={`../dashboard/support`}>
+                            <Image src="/question.png" alt="" width={40} height={20} />
+                        </Link>
+                        <Link className="pr-3" href={`../dashboard/ajustes`}>
                             <Image src="/setting.png" alt="" width={60} height={20} />
                         </Link>
                     </div>
