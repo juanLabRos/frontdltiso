@@ -2,8 +2,8 @@ import Aside from "@/app/components/Aside";
 import Header from "@/app/components/Header";
 import Image from "next/image";
 
-export default function analytics() {
-    return (
+export default function Premium() {
+    return ( 
         <div className="flex h-screen">
             <div className="w-1/7 text-white">
                 <div className="h-full flex flex-col justify-center items-center">

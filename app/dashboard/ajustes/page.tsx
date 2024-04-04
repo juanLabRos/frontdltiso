@@ -2,7 +2,7 @@ import Aside from "@/app/components/Aside";
 import Header from "@/app/components/Header";
 import Image from "next/image";
 
-export default function analytics() {
+export default function settings() {
     return (
         <div className="flex h-screen">
             <div className="w-1/7 text-white">

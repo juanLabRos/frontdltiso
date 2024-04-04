@@ -1,5 +1,11 @@
+import Aside from "@/app/components/Aside";
+import Header from "@/app/components/Header";
+
 export default function tickets() {
     return (
-        <h1>Esto es support para ver tickets</h1>
+        <main className="flex relative">
+            <Aside />
+            <Header />
+        </main>
     )
 }
