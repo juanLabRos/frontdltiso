@@ -13,7 +13,7 @@ export default function wizzard() {
             <div className="flex flex-col flex-grow">
                 {/* Menú superior */}
                 <div className="h-20 fixed top-0 w-full">
-                    <Header />
+                    <Header title={'WIZZARD❓'} />
                 </div>
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">

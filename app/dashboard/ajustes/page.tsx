@@ -13,7 +13,7 @@ export default function settings() {
             <div className="flex flex-col flex-grow">
                 {/* Menú superior */}
                 <div className="h-20 fixed top-0 w-full">
-                    <Header />
+                    <Header title={'EDITAR PERFIL ⚙️'} />
                 </div>
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">
