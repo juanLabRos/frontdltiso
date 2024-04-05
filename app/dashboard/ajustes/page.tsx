@@ -2,7 +2,7 @@ import Aside from "@/app/components/Aside";
 import Header from "@/app/components/Header";
 import Image from "next/image";
 
-export default function policies() {
+export default function settings() {
     return (
         <div className="flex h-screen">
             <div className="w-1/7 text-white">
@@ -13,7 +13,7 @@ export default function policies() {
             <div className="flex flex-col flex-grow">
                 {/* Menú superior */}
                 <div className="h-20 fixed top-0 w-full">
-                    <Header />
+                    <Header title={'EDITAR PERFIL ⚙️'} />
                 </div>
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">
