@@ -1,33 +1,20 @@
-import Aside from "@/app/components/Aside";
-import Header from "@/app/components/Header";
+import Aside from "@/app/ui/Aside";
+import Header from "@/app/ui/Header";
 import Image from "next/image";
 
 export default function analytics() {
     return (
-        <div className="flex h-screen">
-            <div className="w-1/7 text-white">
-                <div className="h-full flex flex-col justify-center items-center">
-                    <Aside />
-                </div>
-            </div>
-            <div className="flex flex-col flex-grow text-black">
-                {/* Menú superior */}
-                <div className="h-20 fixed top-0 w-full">
-                    <Header title={'ANALISIS DE RIESGO 📈'} />
-                </div>
+        <div className="h-full">
                 {/* Contenido de la página */}
-                <div className="flex justify-center items-center h-screen">
-                    <div className="flex-wrap mt-24">
-                        <h2 className="flex justify-center text-black text-3xl font-bold">Informe Ejecutivo 👔</h2>
-                        <section className="flex justify-around mt-10">
-                            <article className="border-r-4 border-black">
-                                <h3 className="text-black mr-10 text-center text-xl">Cliente</h3>
-                                <div className="mt-10 mr-10">
-                                    <Image src="/analisisRiesgo.png" alt="" width={400} height={20} />
-                                </div>
+                <div className="flex flex-col justify-around items-center h-4/5">
+                <h2 className="flex text-black text-center text-3xl mt-24 font-bold">Informe Ejecutivo 👔</h2>
+                <section className="flex justify-center w-3/4 mt-10">
+                            <article className="border-r-4 w-1/2 flex flex-col items-center border-black">
+                                <h3 className="text-black my-5 text-center text-xl">Cliente</h3>
+                                <Image src="/analisisRiesgo.png" alt="" width={400} height={400} />
                             </article>
-                            <article className="ml-20">
-                                <h3 className="text-black text-center text-xl">Otros</h3>
+                            <article className="w-1/2">
+                                <h3 className="text-black text-center my-5 text-xl">Otros</h3>
                                 <div className="mt-10">
                                     <div className="flex items-center">
                                         <p className="py-3">Riesgo general</p>
@@ -39,15 +26,14 @@ export default function analytics() {
                                     </div>
                                     <div className="flex flex-col items-center mt-4">
                                         <p className="py-3">Vulnerabilidad</p>
-                                        <Image src="/vulnerabilidad.png" alt="" width={300} height={20} />
+                                        <Image src="/vulnerabilidad.png" alt="" width={400} height={20} />
                                         <p>Puntuación: 80%</p>
                                     </div>
                                 </div>
                             </article>
                         </section>
-                    </div>
                 </div>
-            </div>
+                <div></div>
         </div>
     )
 }

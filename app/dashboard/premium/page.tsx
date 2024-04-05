@@ -1,9 +1,9 @@
-import Aside from "@/app/components/Aside";
+import Aside from "@/app/ui/Aside";
+import Header from "@/app/ui/Header";
 import Image from "next/image";
-import Header from "@/app/components/Header";
 
-export default function wizzard() {
-    return (
+export default function Premium() {
+    return ( 
         <div className="flex h-screen">
             <div className="w-1/7 text-white">
                 <div className="h-full flex flex-col justify-center items-center">
@@ -13,7 +13,7 @@ export default function wizzard() {
             <div className="flex flex-col flex-grow">
                 {/* Menú superior */}
                 <div className="h-20 fixed top-0 w-full">
-                    <Header title={'WIZZARD❓'} />
+                    <Header title={'PLANES💎'} />
                 </div>
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">

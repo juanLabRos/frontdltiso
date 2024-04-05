@@ -1,22 +1,16 @@
-import Aside from "../components/Aside";
+import Aside from "../ui/Aside";
 import Image from "next/image";
-import Header from "../components/Header";
+import Header from "../ui/Header";
 
 export default function DashBoard() {
     return (
         // Dashboard component
         <div className="flex h-screen">
-            {/* Aside */}
-            <div className="w-1/7 text-white">
-                <div className="h-full flex flex-col justify-center items-center">
-                    <Aside />
-                </div>
-            </div>
 
             <div className="flex flex-col flex-grow">
                 {/* Menú superior */}
                 <div className="h-20 fixed top-0 w-full">
-                    <Header title={'DASHBOARD 📊'} />
+                    <Header />
                 </div>
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">

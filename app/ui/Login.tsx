@@ -12,7 +12,7 @@ export default function Login(){
               <h4 className='text-center text-white'>Introduce tu email para iniciar sesión en la página</h4>
               <div className="mt-3 md:mt-4 w-9/12 max-w-md">
                 {/* --- FORMULARIO ---- */}
-              <form className="space-y-5" action="#" method="POST">
+              <form className="space-y-5" method="POST">
                   {/* --- EMAIL ---- */}
                   <InputForm label='Correo Electrónico' name='email' placeholder='Introduzca su correo electronico' type='email' key={'email'}/>
                     {/* --- CONTRASEÑA ---- */}
@@ -39,9 +39,11 @@ export default function Login(){
                 </div>
                   {/* --- BTN SESION ---- */}
                 <div>
-                  <ButtonCustom>
-                    Iniciar sesión
-                  </ButtonCustom>
+                  <Link href={'/dashboard'}>
+                    <ButtonCustom>
+                      Iniciar sesión
+                    </ButtonCustom>
+                  </Link>
                   
                 </div>
                 {/* --- BTN REGISTRARSE ---- */}

@@ -1,13 +1,30 @@
+"use client"
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-export default function Header({title}: {title: string}) {
+export default function Header() {
+    const pathname= usePathname()
+    const ruta=pathname.split('/')[pathname.split('/').length-1]
+    
+    const arrTitles: {[key: string]: string} = {
+        dashboard:'DASHBOARD 📊',
+        ajustes:'AJUSTES ⚙️',
+        support:'TICKETS 🎫',
+        analytics:'ANALISIS DE RIESGO  📈',
+        policies:'POLITICAS  📜',
+        premium: 'PREMIUM 💎',
+        preguntas:'PREGUNTAS ❓',
+    }
+    const title=arrTitles[ruta]
+    
+    
     return(
         // Header component
         <header className="border-b-2 border-black z-0 bg-white">
             <section className="flex justify-between items-center pb-4">
                 {/* Article donde debe de ir el título de la página en la que nos encontramos */}
-                <article className="m-3 mt-14 mx-40 ">
+                <article className="m-3 mt-14 indent-16 ">
                     <h1 className="text-black text-4xl font-bold">{title}</h1>
                 </article>
                 {/* Article donde se encuentra el buscador y los Links a los ajustes y al soporte */}
