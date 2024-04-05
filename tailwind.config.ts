@@ -21,7 +21,6 @@ const config: Config = {
           default:'#027A8B',
           dark:'#004C56',
           semidark: '#05616D',
-
         }
       }
     },
