@@ -1,6 +1,7 @@
 import ButtonCustom from "./ButtonCustom";
 import InputForm from "./InputForm";
 import Image from 'next/image'
+import Link from "next/link";
 
 export default function Login(){
     return (
@@ -45,9 +46,11 @@ export default function Login(){
                 </div>
                 {/* --- BTN REGISTRARSE ---- */}
                 <div className="mt-1">
+                  <Link href={'/register'}>
                   <ButtonCustom>
                     Registrarse
                   </ButtonCustom>
+                  </Link>
                 </div>
               </form>
             </div>
@@ -67,14 +70,14 @@ export default function Login(){
               {/* --- BOTONES ---- */}
               <div className="mt-1 flex 2xl:flex-col gap-4 flex-row">
                   {/* --- GOOGLE  ---- */}
-                  <ButtonCustom color="gray" tono={200} textColor="black">
+                  <ButtonCustom color="gray-200">
                     <Image src="./google.svg" width={20} height={20} alt="Google" className="w-5 mr-2 h-5"/>
-                    <span className="text-sm font-semibold leading-7">Google</span>
+                    <span className="text-sm font-semibold text-black leading-7">Google</span>
                   </ButtonCustom>
                   {/* --- GITHUB ---- */}
-                  <ButtonCustom color="gray" tono={200} textColor="black">
+                  <ButtonCustom color="gray-200">
                         <Image src="./github.svg" width={20} height={20} alt="Google" className="w-5 mr-2 h-5"/>
-                        <span className="text-sm font-semibold leading-7">GitHub</span>
+                        <span className="text-sm font-semibold text-black leading-7">GitHub</span>
                 </ButtonCustom>
                 </div>
             </div>
