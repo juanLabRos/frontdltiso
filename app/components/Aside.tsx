@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Aside() {
     return(
         // Aside component
-        <aside className="aside z-10 p-1 rounded-l-lg h-screen flex flex-col fixed left-0 top-0 justify-between">
+        <aside className="bg-[#226E79] aside z-10 p-1 rounded-l-lg h-screen flex flex-col fixed left-0 top-0 justify-between">
             <div>
                 {/* Logo DLTCode que te lleva al dashboard */}
                 <Link className="flex p-4 border-b" href={`../dashboard`}>
@@ -41,3 +41,4 @@ export default function Aside() {
         </aside>
     )
 }
+
