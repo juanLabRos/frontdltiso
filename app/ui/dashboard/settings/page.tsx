@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
 
+
 export default function Settings() {
     return (
-        <div className="flex justify-center items-center h-screen">
+        <div className="flex justify-center items-center h-screen ">
             <div className="container">
                 {/* PERFIL */}
-                <div className="mt-8 grid grid-cols-2 gap-80">
+                <div className="grid grid-cols-2 gap-80">
                     <div className="flex justify-center items-center mb-8">
                         <div className="mr-4">
                             {/* Aquí debes reemplazar '/perfil.svg' con la ruta a la imagen del usuario */}
@@ -26,20 +27,6 @@ export default function Settings() {
                             className="bg-customTeal-default hover:bg-customTeal-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         >
                             Cambiar foto
-                        </button>
-
-                        <button 
-                            type="submit" 
-                            className="bg-customTeal-default hover:bg-customTeal-dark text-white py-1 px-1 rounded focus:outline-none focus:shadow-outline"
-                        >
-                        <Link href={`/ui/dashboard/premium`}>
-                            <Image
-                                src="/premium.svg" 
-                                alt="cerrar"
-                                width={40} 
-                                height={30}
-                            />
-                        </Link>
                         </button>
                     </div>
                 </div>

@@ -22,7 +22,7 @@ export default function Login() {
         <body class="h-full">
         ```
       */}
-      <div className=' flex items-center justify-center min-h-screen flex-1 py-12 sm:px-6 lg:px-8'>
+      <div className=' flex items-center justify-center min-h-screen flex-1 py-12 sm:px-6 lg:px-8 '>
         <div className=" flex justify-between w-11/12  sm:rounded-lg">
           <div className=" sm:mx-auto sm:w-full sm:max-w-md  flex flex-col justify-center">
             <Image

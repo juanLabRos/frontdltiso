@@ -1,4 +1,4 @@
-import SideNav from "./SideNav";
+import Aside from "./Aside";
 import Header from "./Header";
 
 export default function Layout(
@@ -6,8 +6,8 @@ export default function Layout(
   return (
     <div className="flex h-screen">
       {/* SideNav */}
-      <div className="w-full flex-none md:w-32">
-        <SideNav />
+      <div className="w-full flex-none md:w-32 bg-white">
+        <Aside />
       </div>
 
       <div className="flex flex-col flex-grow">
@@ -17,7 +17,7 @@ export default function Layout(
         </div>
 
         {/* Main content */}
-        <div className="flex-grow p-6 md:overflow-y-auto md:p-12">{children}</div>
+        <div className="flex-grow p-6 md:overflow-y-auto md:p-12 bg-white">{children}</div>
       </div>
     </div>
   );

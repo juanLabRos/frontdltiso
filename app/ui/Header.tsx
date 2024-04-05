@@ -3,15 +3,15 @@ import Link from "next/link";
 
 export default function Header() {
     return(
-        <div className="flex h-full flex-col px-3 py-4 md:px-2">
-            <header className="border-b-2 border-black z-0 bg-white">
+        <div className="h-full flex-col py-4 md:px-2">
+            <header className="border-b-2 border-black bg-white">
                 <section className="flex justify-between items-center pb-4">
                     {/* Dónde nos encontramos */}
                     <article className="m-3 mt-14 mx-40 ">
                         <h1 className="text-black text-4xl font-bold"> TITULO </h1>
                     </article>
                     {/* Buscador */}
-                    <article className="flex mt-9 relative">
+                    <article className="flex mt-8 relative">
                         <div className="relative">
                             <input className="border rounded-lg mt-2 p-2 pl-8 w-auto h-10 text-black" type="text" id="" placeholder="Buscar..." />
                             <div className="absolute left-2 top-5">
