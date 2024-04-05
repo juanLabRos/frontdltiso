@@ -13,22 +13,21 @@ export default function support() {
             <div className="flex flex-col flex-grow">
                 {/* Menú superior */}
                 <div className="h-20 fixed top-0 w-full">
-                    <Header title={'SOPORTE'} />
+                    <Header title={'TICKETS 🎫'} />
                 </div>
                 {/* Contenido de la página */}
-                <div className="flex flex-wrap p-14 justify-center m-20">
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Riesgo Inherente</h2>
-                        <Image src="/inherente.png" alt="" width={400} height={100} /> 
-                    </div>
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Riesgo Inherente Vs Riesgo Residual</h2>
-                        <Image src="/inherentevsresidual.png" alt="" width={400} height={100} /> 
-                    </div>
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Tratamiento del Riesgo</h2>
-                        <Image src="/riesgo.png" alt="" width={400} height={100} /> 
-                    </div>
+                <div className="flex justify-center items-center h-screen">
+                    <form method="" action={''} className="items-start mt-32 border shadow-xl border-black rounded-xl text-black px-52 py-4">
+                        <article className="m-2">
+                            <h2 className="text-2xl">Asunto del ticket</h2>
+                            <input placeholder="Escriba su incidencia" className="border-black border rounded w-full mt-2 p-3" type="text" name="" id="" />
+                        </article>
+                        <article className="m-2">
+                            <h2 className="text-2xl">Detalles del ticket</h2>
+                            <textarea placeholder="Desarrolle su incidencia" className="border-black border p-3 mt-2 rounded" name="" id="" cols={30} rows={10}></textarea>
+                        </article>
+                        <button className="my-4 rounded p-2 aside text-white" type="submit">Enviar</button>
+                    </form>
                 </div>
             </div>
         </div>
