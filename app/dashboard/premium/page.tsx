@@ -1,32 +1,46 @@
-import Aside from "@/app/ui/Aside";
-import Header from "@/app/ui/Header";
-import Image from "next/image";
+import PremiumBox from "@/app/ui/PremiumBox";
+import PremiumData from "@/app/ui/PremiumData";
+
 
 export default function Premium() {
-    return ( 
-        <div className="flex h-screen">
-            <div className="w-1/7 text-white">
-                <div className="h-full flex flex-col justify-center items-center">
-                    <Aside />
-                </div>
-            </div>
-            <div className="flex flex-col flex-grow">
-                {/* Contenido de la página */}
-                <div className="flex flex-wrap p-14 justify-center m-20">
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Riesgo Inherente</h2>
-                        <Image src="/inherente.png" alt="" width={400} height={100} /> 
-                    </div>
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Riesgo Inherente Vs Riesgo Residual</h2>
-                        <Image src="/inherentevsresidual.png" alt="" width={400} height={100} /> 
-                    </div>
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Tratamiento del Riesgo</h2>
-                        <Image src="/riesgo.png" alt="" width={400} height={100} /> 
-                    </div>
-                </div>
-            </div>
+  return (
+    // Dashboard component
+    <>
+      {/* Contenido pagina premium */}
+      <main className="bg-white flex flex-col justify-items-center h-screen">
+        <h1 className="font-bold text-[36px] text-black text-center py-10">
+          ¿Quiere conseguir funcionalidades extras?
+        </h1>
+        <div className="flex justify-center gap-16 mt-5">
+          <article className="flex flex-col text-center gap-0.5 mt-[232px] ">
+            <PremiumData>
+                Funciones para ver la documentación
+            </PremiumData>
+            <PremiumData>
+                Dashboard Inteligent
+            </PremiumData>
+            <PremiumData>
+                Wizard ISO 27001
+            </PremiumData>
+            <PremiumData>
+                Data Analytics
+            </PremiumData>
+            <PremiumData>
+                Analisis de Riesgo
+            </PremiumData>
+            <PremiumData>
+                Politicas Generadas
+            </PremiumData>
+          </article>
+          <article className="flex flex-col">
+            <PremiumBox marked={false} />
+          </article>
+
+          <article className="flex flex-col">
+                <PremiumBox marked={true} funcionality="premium" price={15} typePrime="PRO"/>
+          </article>
         </div>
-    )
+      </main>
+    </>
+  );
 }
