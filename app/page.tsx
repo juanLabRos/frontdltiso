@@ -22,6 +22,7 @@ export default function index() {
                 className="md:w-3/6  w-4/6 max-w-4xl  bg-white rounded-2xl"
                 src="/dltcode_logo.webp"
                 alt="Your Company"
+                priority={true}
                 width={500}
                 height={200}
               />

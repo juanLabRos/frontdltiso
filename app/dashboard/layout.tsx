@@ -5,6 +5,7 @@ export default function LayoutDashBoard({children}: {children: React.ReactNode})
         
     
     return(
+        <>
             <div className="flex max-h-[1200px] mx-center border h-screnn max-w-[2400px]">
                 <div className="relative  w-36">
                     <Aside />
@@ -14,5 +15,6 @@ export default function LayoutDashBoard({children}: {children: React.ReactNode})
                     {children}
                 </div>
             </div>
+        </>
     )
 }

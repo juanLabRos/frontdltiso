@@ -6,8 +6,11 @@ import Image from 'next/image'
 import { useRouter } from "next/navigation";
 import { fetchFilteredUsers } from "../lib/data";
 import ErrorModal from "./ErrorModal";
+import { useUser } from "../context/useUser";
+
 
 export default function Login(){
+  const {setUsersData}=useUser()
   const router= useRouter()
   const [mail,setMail]=useState('')
   const [pass,setPass]= useState('')
@@ -25,6 +28,7 @@ export default function Login(){
     const user=await fetchFilteredUsers({mail,pass})
     if(user){
       // eslint-disable-next-line react-hooks/rules-of-hooks  
+      setUsersData([{...user}])
       router.push('/dashboard')
     }else{
       setError(true)

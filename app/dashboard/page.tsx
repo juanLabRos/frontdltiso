@@ -1,8 +1,11 @@
-import Aside from "../ui/Aside";
+'use client'
 import Image from "next/image";
-import Header from "../ui/Header";
+import { useUser } from "../context/useUser";
 
 export default function DashBoard() {
+    const {usersData} = useUser();
+    console.log(usersData);
+    
     return (
         // Dashboard component
         <div className="flex h-screen">
