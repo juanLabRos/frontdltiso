@@ -11,10 +11,6 @@ export default function Premium() {
                 </div>
             </div>
             <div className="flex flex-col flex-grow">
-                {/* Menú superior */}
-                <div className="h-20 fixed top-0 w-full">
-                    <Header title={'PLANES💎'} />
-                </div>
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">
                     <div className="border rounded m-3 p-2">

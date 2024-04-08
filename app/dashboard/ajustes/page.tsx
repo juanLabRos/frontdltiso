@@ -1,20 +1,18 @@
 import InputForm from "@/app/ui/InputForm";
 import Image from "next/image";
 import Link from "next/link";
-
+import user_img from "@/public/user_img.svg";
 
 export default function Settings() {
     return (
-        <div className="flex justify-center border items-center h-screen ">
-            <div className="container">
+        <div className="h-screen flex justify-center">
+            <div className=" flex md:-mt-8 flex-col h-5/6 md:scale-90 justify-around w-3/4 max-w-5xl">
                 {/* PERFIL */}
-                <div className="grid grid-cols-2 gap-80">
-                    <div className="flex justify-center items-center mb-8">
-                        <div className="mr-4">
-                            {/* Aquí debes reemplazar '/perfil.svg' con la ruta a la imagen del usuario */}
-                            <Image src="/perfil.svg" alt="Imagen de perfil" width={100} height={100} className="rounded-full" />
-                        </div>
-                        <div>
+                <div className="flex justify-around">
+                    <div className="flex justify-around items-center w-2/6">
+                        {/* Aquí debes reemplazar '/perfil.svg' con la ruta a la imagen del usuario */}
+                        <Image src={user_img} alt="Imagen de perfil" width={100} height={100} className="rounded-full" />
+                        <div className="text-black text-center">
                             {/* Correo electrónico */}
                             <p className="text-lg font-bold">email@dltcode.es</p>
                             {/* Nombre de usuario */}
@@ -31,87 +29,28 @@ export default function Settings() {
                         </button>
                     </div>
                 </div>
-
-
-                {/* AJUSTES */}
-                <div className="mt-8 grid grid-cols-2 gap-80">
+                {/* ENTRADA DE DATOS */}
+                <div className="flex justify-around text-black">
                     {/* Lado izquierdo */}
-                    <div>
+                    <div className="w-1/3">
                         {/* Usuario*/}
-                        <div className="mb-4">
-                            <InputForm label="Nombre de usuarioa" name="user" placeholder="Introduzca su nombre de usuario" type="text">
-                            </InputForm>
-                            <label className="form-label"></label>
-                            <input 
-                                type="text" 
-                                id="usuario" 
-                                name="usuario" 
-                                placeholder="Introduzca su nombre de usuario"
-                                className="block w-full indent-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
+                        <InputForm label="Nombre de usuario" name="user" placeholder="Introduzca su nombre de usuario" type="text"></InputForm>
                         {/* Email*/}
-                        <div className="mb-4">
-                            <label className="form-label"></label>
-                            <input 
-                                type="text" 
-                                id="email" 
-                                name="email" 
-                                placeholder="Introduzca su correo electrónico"
-                                className="block w-full indent-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
+                        <InputForm label="Correo electronico" name="email" placeholder="Introduzca su correo electronico" type="email"></InputForm>
                         {/* Nueva contraseña */}
-                        <div className="mb-4">
-                            <label className="form-label"></label>
-                            <input 
-                                type="text" 
-                                id="newpass" 
-                                name="newpass" 
-                                placeholder="Introduzca la nueva contraseña"
-                                className="block w-full indent-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
+                        <InputForm label="Nueva contraseña" name="newPassword" placeholder="Introduzca su nueva contraseña" type="password"></InputForm>
                     </div>
-                    
                     {/* Lado derecho */}
-                    <div>
+                    <div className="w-1/3">
                         {/* Nombre*/}
-                        <div className="mb-4">
-                            <label className="form-label"></label>
-                            <input 
-                                type="text" 
-                                id="nombre" 
-                                name="nombre" 
-                                placeholder="Introduzca su nombre completo"
-                                className="block w-full indent-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
+                        <InputForm label="Nombre completo" name="fullName" placeholder="Introduzca su nombre completo" type="text"></InputForm>
                         {/* Contraseña actual */}
-                        <div className="mb-4">
-                            <label className="form-label"></label>
-                            <input 
-                                type="text" 
-                                id="pass" 
-                                name="pass" 
-                                placeholder="Introduzca la contraseña actual"
-                                className="block w-full indent-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
+                        <InputForm label="Contraseña Actual" name="actualPassword" placeholder="Introduzca su actual contraseña" type="password"></InputForm>
                         {/* Repetir nueva Contraseña */}
-                        <div className="mb-4">
-                            <label className="form-label"></label>
-                            <input 
-                                type="text" 
-                                id="repass" 
-                                name="repass" 
-                                placeholder="Repita la nueva contraseña"
-                                className="block w-full indent-4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6"
-                            />
-                        </div>
+                        <InputForm label="Repita su nueva contraseña" name="user" placeholder="Introduzca de nuevo su nueva contraseña" type="password"></InputForm>
                     </div>
                 </div>
-
+                {/* Change Button */}
                 <div className="flex justify-center">
                     <button 
                         type="submit" 
