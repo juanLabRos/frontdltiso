@@ -1,22 +1,52 @@
+'use client'
+import { useState } from "react";
 import ButtonCustom from "./ButtonCustom";
 import InputForm from "./InputForm";
 import Image from 'next/image'
-import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { fetchFilteredUsers } from "../lib/data";
+import ErrorModal from "./ErrorModal";
 
 export default function Login(){
+  const router= useRouter()
+  const [mail,setMail]=useState('')
+  const [pass,setPass]= useState('')
+  const [error,setError]=useState(false)
+
+  const handleMailChange=(e:any)=>{
+    setMail(e.target.value)
+    
+  }
+  const handlePassChange=(e:any)=>{
+    setPass(e.target.value)
+  }
+  const handleSubmit=async(e:any)=>{
+    e.preventDefault()
+    const user=await fetchFilteredUsers({mail,pass})
+    if(user){
+      // eslint-disable-next-line react-hooks/rules-of-hooks  
+      router.push('/dashboard')
+    }else{
+      setError(true)
+    }
+  }
+
+
     return (
+      <>
         <div className=" md:w-4/6 max-w-4xl lg:w-1/2 flex flex-col gap-3 items-center bg-black bg-opacity-50 md:bg-transparent rounded-xl md:rounded-none px-4 py-3 lg:py-6 ">
               <h2 className="mt-2 md:mt-5 text-center text-3xl tracking-wider font-bold leading-9 text-white">
                 Inicio Sesión
               </h2>
               <h4 className='text-center text-white'>Introduce tu email para iniciar sesión en la página</h4>
               <div className="mt-3 md:mt-4 w-9/12 max-w-md">
+              {error ? <ErrorModal message="El e-mail o la contraseña no coinciden"/> : ''}
                 {/* --- FORMULARIO ---- */}
-              <form className="space-y-5" method="POST">
+              <form className="space-y-5" method="POST" onSubmit={handleSubmit} >
                   {/* --- EMAIL ---- */}
-                  <InputForm label='Correo Electrónico' name='email' placeholder='Introduzca su correo electronico' type='email' key={'email'}/>
+                  <InputForm onChange={handleMailChange} label='Correo Electrónico' name='email' placeholder='Introduzca su correo electronico' type='email' key={'email'}/>
                     {/* --- CONTRASEÑA ---- */}
-                  <InputForm label='Contraseña' name='password' placeholder='*******' type='password' key={'pasword'}/>
+                  <InputForm onChange={handlePassChange} label='Contraseña' name='password' placeholder='*******' type='password' key={'pasword'}/>
                 {/* --- RECUEDAME ---- */}
                 <div className="flex items-center justify-between">
                   <div className="flex ml-3 items-center">
@@ -39,20 +69,16 @@ export default function Login(){
                 </div>
                   {/* --- BTN SESION ---- */}
                 <div>
-                  <Link href={'/dashboard'}>
                     <ButtonCustom>
                       Iniciar sesión
                     </ButtonCustom>
-                  </Link>
                   
                 </div>
                 {/* --- BTN REGISTRARSE ---- */}
                 <div className="mt-1">
-                  <Link href={'/register'}>
                   <ButtonCustom>
                     Registrarse
                   </ButtonCustom>
-                  </Link>
                 </div>
               </form>
             </div>
@@ -84,5 +110,6 @@ export default function Login(){
                 </div>
             </div>
           </div>
+      </>
     )
 }
