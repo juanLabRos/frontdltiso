@@ -1,7 +1,7 @@
 
 
 export default function ButtonCustom({ children, color ='customTeal'}: { children: any, color?: string}) {
-    const bgColor = color === 'customTeal' ? `bg-customTeal-dark` : `bg-gray-300`;
+    const bgColor = color === 'customTeal' ? `bg-customTeal-dark` : `bg-white`;
     const hoverBgColor = color === 'customTeal' ? `bg-customTeal-semidark` : `bg-${color}`;
     const focusOutlineColor = color === 'customTeal' ? `outline-customTeal-semidark` : `outline-${color}`;
   

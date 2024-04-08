@@ -19,7 +19,7 @@ export default function index() {
             {/* --- IMAGEN ---- */}
             <div className="md:justify-start w-3/4 sm:w-2/4 md:w-1/3 lg:w-1/2 relative flex justify-center items-center ">
               <Image
-                className="md:w-3/6  w-4/6 max-w-4xl  bg-white rounded-2xl"
+                className=" mt-2 w-4/6 max-w-md rounded-2xl"
                 src="/dltcode_logo.webp"
                 alt="Your Company"
                 width={500}
