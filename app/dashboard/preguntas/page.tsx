@@ -1,10 +1,16 @@
 import Aside from "@/app/ui/Aside";
-import Header from "@/app/ui/Header";
 import Image from "next/image";
+import Header from "@/app/ui/Header";
 
-export default function policies() {
+export default function wizzard() {
     return (
         <div className="flex h-screen">
+            <div className="w-1/7 text-white">
+                <div className="h-full flex flex-col justify-center items-center">
+                    <Aside />
+                </div>
+            </div>
+            <div className="flex flex-col flex-grow">
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">
                     <div className="border rounded m-3 p-2">
@@ -20,6 +26,7 @@ export default function policies() {
                         <Image src="/riesgo.png" alt="" width={400} height={100} /> 
                     </div>
                 </div>
+            </div>
         </div>
     )
 }

@@ -3,56 +3,41 @@ import Link from "next/link";
 
 export default function Aside() {
     return(
-        <div>
-          {/* LOGO */}
-          <div className="h-screen flex h-full flex-col px-3 py-4 md:px-2">
-            <div className="mb-1 flex items-end justify-start rounded-md bg-customTeal-default p-4 md:h-32">
-                <Image
-                  src="/logo.png" 
-                  alt="logo"
-                  width={100} 
-                  height={100}
-                />
-          </div>
-
-          <div className="h-screen items-end justify-start rounded-md bg-customTeal-default">
-            {/* Menu de navegación */}
-            <article className="m-7">
-              {/* Imagen para ir al dashboard */}
-              <Link className="flex" href={`../dashboard`}>
-                <Image src="/dashboard.png" alt="dashboard" width={50} height={20} />
-              </Link>
-              {/* Imagen para ir al wizzard */}
-              <Link className="flex px-3 py-5" href={`../dashboard/wizzard`}>
-                <Image src="/questions.png" alt="dashboard" width={30} height={20} />
-              </Link>
-              {/* Imagen para ir a las analiticas */}
-              <Link className="flex px-3 py-5" href={`../dashboard/analytics`}>
-                <Image src="/graph.png" alt="dashboard" width={30} height={20} />
-              </Link>
-              {/* Imagen para ir a las politicas */}
-              <Link className="flex px-2 py-5" href={`../dashboard/policies`}>
-                <Image src="/politicies.png" alt="dashboard" width={40} height={20} />
-              </Link>
-              {/* Imagen para ir a los planes */}
-              <Link className="flex px-2 py-5" href={`../dashboard/premium`}>
-                <Image src="/planes.png" alt="dashboard" width={40} height={20} />
-              </Link>
-            </article>
-            
-            {/* Cerrar Sesion */}
-            <div className="fixed bottom-5 px-2 py-5">
-              <Link href={`/`}>
-                <Image
-                  src="/signout.png" 
-                  alt="cerrar"
-                  width={100} 
-                  height={100}
-                />
-              </Link>
+        // Aside component
+        <aside className="bg-customTeal-medium max-h-[1100px] z-10 p-1 rounded-l-lg h-screen flex flex-col fixed left-0 top-0 justify-between">
+            <div>
+                {/* Logo DLTCode que te lleva al dashboard */}
+                <Link className="flex p-4 border-b" href={`../dashboard`}>
+                    <Image src="/dltcode.png" alt="dashboard" width={90} height={20} />
+                </Link>
+                {/* Parte donde se encuentran todos los iconos que te llevan a cada página */}
+                <article className="m-7">
+                    {/* Imagen para ir al dashboard */}
+                    <Link className="flex py-4" href={`../dashboard`}>
+                        <Image src="/dashboard.png" alt="dashboard" width={50} height={20} />
+                    </Link>
+                    {/* Imagen para ir al wizzard */}
+                    <Link className="flex px-3 py-5" href={`../dashboard/preguntas`}>
+                        <Image src="/questions.png" alt="dashboard" width={30} height={20} />
+                    </Link>
+                    {/* Imagen para ir a las analiticas */}
+                    <Link className="flex px-3 py-5" href={`../dashboard/analytics`}>
+                        <Image src="/graph.png" alt="dashboard" width={30} height={20} />
+                    </Link>
+                    {/* Imagen para ir a las politicas */}
+                    <Link className="flex px-2 py-5" href={`../dashboard/policies`}>
+                        <Image src="/politicies.png" alt="dashboard" width={40} height={20} />
+                    </Link>
+                    {/* Imagen para ir a los planes */}
+                    <Link className="flex px-2 py-5" href={`../dashboard/premium`}>
+                        <Image src="/planes.png" alt="dashboard" width={40} height={20} />
+                    </Link>
+                </article>
             </div>
-          </div>
-        </div>  
-      </div>
+            {/* Icono de apagar */}
+            <Link className="flex px-9 pb-3" href={`../../`}>
+                <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
+            </Link>
+        </aside>
     )
 }
