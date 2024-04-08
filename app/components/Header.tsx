@@ -5,6 +5,8 @@ export default function Header({title}: {title: string}) {
     return(
         // Header component
         <header className="border-b-2 border-black z-0 bg-white">
+
+            
             <section className="flex justify-between items-center pb-4">
                 {/* Article donde debe de ir el título de la página en la que nos encontramos */}
                 <article className="m-3 mt-14 mx-40 ">
