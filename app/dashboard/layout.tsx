@@ -5,8 +5,8 @@ export default function LayoutDashBoard({children}: {children: React.ReactNode})
         
     
     return(
-            <div className="flex h-screen">
-                <div className="w-36">
+            <div className="flex max-h-[1100px] mx-center border h-screnn max-w-[2000px]">
+                <div className="relative  w-36">
                     <Aside />
                 </div>
                 <div className="flex w-full flex-col">
