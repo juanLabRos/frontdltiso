@@ -2,6 +2,7 @@ import InputForm from "@/app/ui/InputForm";
 import Image from "next/image";
 import Link from "next/link";
 import user_img from "@/public/user_img.svg";
+import ButtonCustom from "@/app/ui/ButtonCustom";
 
 export default function Settings() {
     return (
@@ -21,12 +22,9 @@ export default function Settings() {
                     </div>
                     {/* Cambiar foto */}
                     <div className="flex justify-center items-center mb-8 gap-5">
-                        <button 
-                            type="submit" 
-                            className="bg-customTeal-default hover:bg-customTeal-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        >
-                            Cambiar foto
-                        </button>
+                        <ButtonCustom>
+                            <span className="text-sm font-semibol leading-7">Cambiar foto</span>
+                        </ButtonCustom>
                     </div>
                 </div>
                 {/* ENTRADA DE DATOS */}
@@ -52,12 +50,9 @@ export default function Settings() {
                 </div>
                 {/* Change Button */}
                 <div className="flex justify-center">
-                    <button 
-                        type="submit" 
-                        className="bg-customTeal-default hover:bg-customTeal-dark text-white py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                        Guardar cambios
-                    </button>
+                    <ButtonCustom>
+                        <span className="text-sm font-semibol leading-7">Guardar Cambios</span>
+                    </ButtonCustom>
                 </div>
             </div>
         </div>
