@@ -1,15 +1,14 @@
-import Aside from "@/app/components/Aside";
+'use client'
 import Image from "next/image";
-import Header from "@/app/components/Header";
 
-export default function wizzard() {
+
+export default function DashBoard() {
+
+    
     return (
+        // Dashboard component
         <div className="flex h-screen">
-            <div className="w-1/7 text-white">
-                <div className="h-full flex flex-col justify-center items-center">
-                    <Aside />
-                </div>
-            </div>
+
             <div className="flex flex-col flex-grow">
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">
@@ -28,5 +27,5 @@ export default function wizzard() {
                 </div>
             </div>
         </div>
-    )
+    );
 }

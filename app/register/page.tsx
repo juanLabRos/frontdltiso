@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import NewAccount from '../ui/NewAccount'
+import NewAccount from '../components/Login/NewAccount'
 
 
 export default function Register() {
