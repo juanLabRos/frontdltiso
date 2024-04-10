@@ -1,4 +1,4 @@
-import ButtonCustom from "@/app/ui/ButtonCustom";
+import ButtonCustom from "@/app/components/Login/ButtonCustom";
 
 export default function support() {
     return (

@@ -1,8 +1,10 @@
-import Aside from "../ui/Aside";
+'use client'
 import Image from "next/image";
-import Header from "../ui/Header";
+
 
 export default function DashBoard() {
+
+    
     return (
         // Dashboard component
         <div className="flex h-screen">

@@ -1,5 +1,5 @@
 interface User {
-    id: string;
+    id: number;
     nombre: string;
     contrasenia: string;
     correo: string;
