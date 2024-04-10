@@ -13,7 +13,7 @@ export default function Header() {
         support:'TICKETS 🎫',
         analytics:'ANALISIS DE RIESGO  📈',
         policies:'POLITICAS  📜',
-        premium: 'PREMIUM 💎',
+        premium: 'PLANES 💎',
         preguntas:'PREGUNTAS ❓',
     }
     const title=arrTitles[ruta]

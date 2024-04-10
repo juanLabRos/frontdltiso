@@ -15,12 +15,12 @@ export default function analytics() {
                             </article>
                             <article className="w-1/2">
                                 <h3 className="text-black text-center my-5 text-xl">Otros</h3>
-                                <div className="mt-10">
-                                    <div className="flex items-center">
+                                <div className="mt-10 text-black">
+                                    <div className="flex items-center justify-center">
                                         <p className="py-3">Riesgo general</p>
                                         <p className="border mx-5 px-4 py-1 rounded-full bg-gray-300 text-center">7.1</p>
                                     </div>
-                                    <div className="flex items-center">
+                                    <div className="flex items-center justify-center">
                                         <p className="py-3">Probabilidad de ataque</p>
                                         <p className="border mx-5 px-2 py-1 rounded-full bg-gray-300 text-center">62%</p>
                                     </div>
