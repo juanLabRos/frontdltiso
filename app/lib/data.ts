@@ -2,7 +2,7 @@
 import User from '../mock/users.json';
 import bcrypt from 'bcrypt';
 import { Usuario } from './definitions';
-
+/*
 export async function fetchFilteredUsers({ mail, pass }: { mail: string; pass: string }) {
     // Buscar el usuario por su mail
     const user = User.find((user: { correo: string }) => user.correo === mail);
@@ -19,3 +19,4 @@ export async function fetchFilteredUsers({ mail, pass }: { mail: string; pass: s
 
     return result ? partialUser : false;
 }
+*/

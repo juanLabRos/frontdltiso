@@ -1,6 +1,6 @@
-import Aside from "@/app/ui/Aside";
+import Aside from "@/app/components/Aside";
 import Image from "next/image";
-import Header from "@/app/ui/Header";
+import Header from "@/app/components/Header";
 
 export default function wizzard() {
     return (

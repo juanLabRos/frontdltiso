@@ -1,38 +1,46 @@
 'use client'
+//Imports
 import { useState } from "react";
+import { signIn } from 'next-auth/react'
+import { useRouter } from "next/navigation";
+
+//Components
+import ErrorModal from "./ErrorModal";
 import ButtonCustom from "./ButtonCustom";
 import InputForm from "./InputForm";
 import Image from 'next/image'
-import { useRouter } from "next/navigation";
-import { fetchFilteredUsers } from "../lib/data";
-import ErrorModal from "./ErrorModal";
-import { useUser } from "../context/useUser";
+import Link from "next/link";
 
 
 export default function Login(){
-  const {setUsersData}=useUser()
   const router= useRouter()
-  const [mail,setMail]=useState('')
-  const [pass,setPass]= useState('')
-  const [error,setError]=useState(false)
+  const [errors, setErrors] = useState(false);
+  const [email, setEmail] = useState("test@test.com");
+  const [password, setPassword] = useState("123123");
 
   const handleMailChange=(e:any)=>{
-    setMail(e.target.value)
+    setEmail(e.target.value)
     
   }
   const handlePassChange=(e:any)=>{
-    setPass(e.target.value)
+    setPassword(e.target.value)
   }
   const handleSubmit=async(e:any)=>{
     e.preventDefault()
-    const user=await fetchFilteredUsers({mail,pass})
-    if(user){
-      // eslint-disable-next-line react-hooks/rules-of-hooks  
-      setUsersData([{...user}])
-      router.push('/dashboard')
-    }else{
-      setError(true)
+
+    const responseNextAuth = await signIn("credentials", {
+      email,
+      password,
+      redirect: false,
+    });
+    console.log(responseNextAuth);
+    
+    if (responseNextAuth ) {
+      setErrors(true)
+      return;
     }
+    router.push("/dashboard");
+
   }
 
 
@@ -44,7 +52,7 @@ export default function Login(){
               </h2>
               <h4 className='text-center text-white'>Introduce tu email para iniciar sesión en la página</h4>
               <div className="mt-3 md:mt-4 w-9/12 max-w-md">
-              {error ? <ErrorModal message="El e-mail o la contraseña no coinciden"/> : ''}
+              {errors ? <ErrorModal message="El e-mail o la contraseña no coinciden"/> : ''}
                 {/* --- FORMULARIO ---- */}
               <form className="space-y-5" method="POST" onSubmit={handleSubmit} >
                   {/* --- EMAIL ---- */}
@@ -79,12 +87,14 @@ export default function Login(){
                   
                 </div>
                 {/* --- BTN REGISTRARSE ---- */}
-                <div className="mt-1">
-                  <ButtonCustom>
-                    Registrarse
-                  </ButtonCustom>
-                </div>
               </form>
+                <div className="mt-1">
+                  <Link href={'../register'}>
+                    <ButtonCustom>
+                      Registrarse
+                    </ButtonCustom>
+                  </Link>
+                </div>
             </div>
 
             {/* --- AUTENTICACIÓNES ---- */}

@@ -1,3 +1,4 @@
+'use client'
 import ButtonCustom from "./ButtonCustom";
 import InputForm from "./InputForm";
 

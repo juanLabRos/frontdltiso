@@ -1,5 +1,5 @@
-import PremiumBox from "@/app/ui/PremiumBox";
-import PremiumData from "@/app/ui/PremiumData";
+import PremiumBox from "@/app/components/PremiumBox";
+import PremiumData from "@/app/components/PremiumData";
 
 
 export default function Premium() {

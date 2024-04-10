@@ -1,4 +1,4 @@
-import InputForm from "@/app/ui/InputForm";
+import InputForm from "@/app/components/Login/InputForm";
 import Image from "next/image";
 import Link from "next/link";
 import user_img from "@/public/user_img.svg";

@@ -1,5 +1,5 @@
-import Aside from "../ui/Aside";
-import Header from "../ui/Header";
+import Aside from "../components/Aside";
+import Header from "../components/Header";
 
 export default function LayoutDashBoard({children}: {children: React.ReactNode}) {
         
