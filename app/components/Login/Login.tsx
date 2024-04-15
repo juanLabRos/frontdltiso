@@ -33,14 +33,22 @@ export default function Login(){
       password,
       redirect: false,
     });
-    console.log(responseNextAuth);
     
-    if (responseNextAuth ) {
+    if (responseNextAuth?.error) {
       setErrors(true)
       return;
     }
     router.push("/dashboard");
 
+  }
+  const handleGitHub=async()=>{
+    const responseNextAuth = await signIn("github", {
+      redirect:true,
+    });
+    if (responseNextAuth?.error) {
+      setErrors(true)
+      return
+    }
   }
 
 
@@ -117,10 +125,10 @@ export default function Login(){
                     <span className="text-sm font-semibold text-black leading-7">Google</span>
                   </ButtonCustom>
                   {/* --- GITHUB ---- */}
-                  <ButtonCustom color="gray-200">
+                  <ButtonCustom onClick={handleGitHub} color="gray-200">
                         <Image src="./github.svg" width={20} height={20} alt="Google" className="w-5 mr-2 h-5"/>
                         <span className="text-sm font-semibold text-black leading-7">GitHub</span>
-                </ButtonCustom>
+                  </ButtonCustom>
                 </div>
             </div>
           </div>

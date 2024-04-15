@@ -2,7 +2,7 @@ import InputForm from "@/app/components/Login/InputForm";
 import Image from "next/image";
 import Link from "next/link";
 import user_img from "@/public/user_img.svg";
-import ButtonCustom from "@/app/ui/ButtonCustom";
+import ButtonCustom from "@/app/components/Login/ButtonCustom";
 
 export default function Settings() {
     return (

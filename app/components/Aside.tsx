@@ -1,3 +1,4 @@
+import { signOut } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -35,9 +36,9 @@ export default function Aside() {
                 </article>
             </div>
             {/* Icono de apagar */}
-            <Link className="flex px-9 pb-3" href={`../../`}>
+            <button onClick={()=>{signOut()}} className="flex px-9 pb-3">
                 <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
-            </Link>
+            </button>
         </aside>
     )
 }
