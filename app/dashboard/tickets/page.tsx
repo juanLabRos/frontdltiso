@@ -1,6 +1,6 @@
 import ButtonCustom from "@/app/components/Login/ButtonCustom";
 
-export default function support() {
+export default function tickets() {
     return (
         <div className="flex h-screen">
                 {/* Contenido de la página */}

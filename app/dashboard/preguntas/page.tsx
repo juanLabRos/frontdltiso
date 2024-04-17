@@ -1,25 +1,52 @@
-import Image from "next/image";
+'use client'
+import { useState } from "react";
+import ButtonCustomB from "@/app/components/Wizzard/ButtonCustomBlue";
+import ButtonCustomG from "@/app/components/Wizzard/ButtonCustomGrey";
+import InputForm from "@/app/components/Login/InputForm"
 
 export default function wizzard() {
-    return (
-        <div className="flex h-screen">
-            <div className="flex flex-col flex-grow">
-                {/* Contenido de la página */}
-                <div className="flex flex-wrap p-14 justify-center m-20">
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Riesgo Inherente</h2>
-                        <Image src="/inherente.png" alt="" width={400} height={100} /> 
-                    </div>
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Riesgo Inherente Vs Riesgo Residual</h2>
-                        <Image src="/inherentevsresidual.png" alt="" width={400} height={100} /> 
-                    </div>
-                    <div className="border rounded m-3 p-2">
-                        <h2 className="text-black text-center">Tratamiento del Riesgo</h2>
-                        <Image src="/riesgo.png" alt="" width={400} height={100} /> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
-}
+    // Array de preguntas del 1 al 100 (ejemplo)
+    const preguntas = Array.from({ length: 10 }, (_, index) => `Pregunta ${index + 1}`);
+
+    const [preguntaActual, setPreguntaActual] = useState(0);
+ 
+    const irAnterior = () => {
+        if (preguntaActual > 0) {
+            setPreguntaActual(preguntaActual - 1);
+        }
+    };
+
+    const irSiguiente = () => {
+        if (preguntaActual < preguntas.length - 1) { 
+            setPreguntaActual(preguntaActual + 1);
+        }
+    };
+ 
+     return (
+         <div className="flex h-screen">
+             {/* Contenido de la página */}
+             <div className="flex md:scale-90 justify-center w-full h-fit">
+                 <form method="" action={''} className="border w-5/6 shadow-xl flex flex-col items-center border-black rounded-xl text-black py-10">
+                     <article className="m-2 w-3/4">
+                         <h2 className="text-2xl">{preguntas[preguntaActual]}</h2>
+                     </article>
+                     <article className="mt-5 w-3/4">
+                         <InputForm label="Pregunta" name='pregunta' placeholder='Escriba aquí su respuesta' type='text'/>
+                     </article>
+                     <div className="flex justify-around text-white gap-10 flex-row">
+                         <div className="mt-5 mr-10">
+                             <ButtonCustomG onClick={irAnterior}>
+                                 Anterior
+                             </ButtonCustomG>
+                         </div>
+                         <div className="mt-5 ml-10">
+                             <ButtonCustomB onClick={irSiguiente}>
+                                 Siguiente
+                             </ButtonCustomB>
+                         </div>
+                     </div>
+                 </form>
+             </div>
+         </div>
+     )
+ }
