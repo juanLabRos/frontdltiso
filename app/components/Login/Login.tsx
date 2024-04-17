@@ -11,6 +11,7 @@ import InputForm from "./InputForm";
 import Image from 'next/image'
 import Link from "next/link";
 import {GoogleSignInButton} from "./AuthButtons"
+import { GithubSignInButton } from "./AuthButtons";
 
 
 export default function Login(){
@@ -116,10 +117,8 @@ export default function Login(){
                     <GoogleSignInButton>
                     </GoogleSignInButton>
                   {/* --- GITHUB ---- */}
-                  <ButtonCustom color="gray-200">
-                        <Image src="./github.svg" width={20} height={20} alt="Google" className="w-5 mr-2 h-5"/>
-                        <span className="text-sm font-semibold text-black leading-7">GitHub</span>
-                </ButtonCustom>
+                    <GithubSignInButton>
+                    </GithubSignInButton>
                 </div>
             </div>
           </div>
