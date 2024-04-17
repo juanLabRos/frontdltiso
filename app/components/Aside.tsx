@@ -1,4 +1,5 @@
 "use client"
+import { signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -51,9 +52,11 @@ function AsideContent({ currentPath }: AsideContentProps) {
                     </Link>
                 </article>
             </div>
-            <Link className="flex px-9 pb-3" href="../../">
-                <Image src="/turnoff.svg" alt="dashboard" width={40} height={20} />
-            </Link>
+
+            {/* Icono de apagar */}
+            <button onClick={()=>{signOut()}} className="flex px-9 pb-3">
+                <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
+            </button>
         </aside>
     );
 }

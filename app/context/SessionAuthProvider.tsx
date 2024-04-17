@@ -11,6 +11,6 @@ interface Props{
 
 export default function SessionAuthProvider({children}: Props){
     return(
-        <SessionProvider>{children}</SessionProvider>
+        <SessionProvider >{children}</SessionProvider>
     )
 }

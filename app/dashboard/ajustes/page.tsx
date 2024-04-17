@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
 import user_img from "@/public/user_img.svg";
+
 import InputForm from "@/app/components/Ajustes/InputFormAjustes";
 import ButtonCustom from "@/app/components/Ajustes/ButtonCustomAjustes";
 import Users from "./testUsers.json";

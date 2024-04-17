@@ -35,14 +35,22 @@ export default function Login(){
       password,
       redirect: false,
     });
-    console.log(responseNextAuth);
     
-    if (responseNextAuth ) {
+    if (responseNextAuth?.error) {
       setErrors(true)
       return;
     }
     router.push("/dashboard");
 
+  }
+  const handleGitHub=async()=>{
+    const responseNextAuth = await signIn("github", {
+      redirect:true,
+    });
+    if (responseNextAuth?.error) {
+      setErrors(true)
+      return
+    }
   }
 
 
