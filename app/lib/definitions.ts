@@ -1,11 +1,11 @@
 export interface User {
+    id: number;
     username: string;
     password: string;
     email: string;
     company:string;
   };
 
-export type Usuario= Partial<User>;
 
 export const customErrorZod = (issue:any) => {
   switch (issue.code) {

@@ -45,4 +45,4 @@ export async function fetchCheckMail({ mail }: { mail: string }) {
         console.error("Error al obtener datos del servidor:", error);
         return null;
     }
-}
+} 

@@ -1,7 +1,7 @@
 import { User, customErrorZod } from "@/app/lib/definitions";
 import {  z } from "zod";
 
-export async function POST({data}:{data:User}){
+export async function register({data}:{data:User}){
   
     const schecma= z
       .object({
@@ -11,12 +11,11 @@ export async function POST({data}:{data:User}){
         company: z.string()
       });
     const parsedData= schecma.safeParse(data)
-    console.log(parsedData);
     
     if(!parsedData.success){
       throw new Error( customErrorZod(parsedData.error.issues[0]));
     }
-    console.log(parsedData);
+    debugger
     if (parsedData.success) {
         const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/register`, {  
           method: 'POST',
@@ -24,10 +23,21 @@ export async function POST({data}:{data:User}){
           headers: { 'Content-Type': 'application/json' },
         });
         const user = await response.json();
-        console.log(user);
-        
-        return user;
+        const partialUser={
+          email:user.email,
+          id:user.id,
+        }
+        return {user:partialUser};
     }
         
 }
-
+export async function activateAccount({activation_token,email}:{activation_token:number,email:string}){
+  
+  const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/activate`, {  
+    method: 'POST',
+          body: JSON.stringify({activation_token,email}), 
+          headers: { 'Content-Type': 'application/json' },
+    });
+  const user = await response.json();
+  return user;
+}
