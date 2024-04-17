@@ -31,7 +31,6 @@ const handler = NextAuth({
             return user
           }
         }),
-        //Faltan los datos de las credenciales de google y github
         GoogleProvider({
           clientId: process.env.GOOGLE_CLIENT_ID as string,
           clientSecret: process.env.GOOGLE_CLIENT_SECRET as string
