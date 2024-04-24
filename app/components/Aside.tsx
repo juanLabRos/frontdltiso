@@ -38,7 +38,7 @@ function AsideContent({ currentPath }: AsideContentProps) {
                     <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
                         <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
                     </Link>
-                    <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/preguntas">
+                    <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/questions">
                         <Image src={activeLinkIndex === 1 ? "/questions1.svg" : "/questions.svg"} alt="dashboard" width={40} height={20} />
                     </Link>
                     <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">

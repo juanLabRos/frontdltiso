@@ -1,10 +1,12 @@
 'use client'
 import React, { useState, useEffect } from "react";
+import { validateEmail } from "@/app/utils/validateEmail"
+import { validatePassword } from "@/app/utils/validatePassword"
 import Image from "next/image";
 import user_img from "@/public/user_img.svg";
+import InputForm from "@/app/components/Settings/InputFormSettings";
+import ButtonCustom from "@/app/components/Settings/ButtonCustomSettings";
 
-import InputForm from "@/app/components/Ajustes/InputFormAjustes";
-import ButtonCustom from "@/app/components/Ajustes/ButtonCustomAjustes";
 import Users from "./testUsers.json";
 
 export default function Settings() {
@@ -12,27 +14,32 @@ export default function Settings() {
     const [userData, setUserData] = useState(
         {
             id: 2,
-            nombre: "",
-            contrasenia: "",
-            correo: "",
-            nombre_completo: "",
-            tipo_usuario: "",
-            compania: ""
+            username: "",
+            password: "", //123123
+            email: "",
+            fullname: "",
+            usertype: "",
+            company: ""
         }
     );
 
     //userName
     const [newUsername, setNewUsername] = useState("");
     const [existingUsernames, setExistingUsernames] = useState<string[]>([]);
-    const [usernameError, setUsernameError] = useState(""); // Estado para mensaje de error de nombre de usuario
+    const [usernameError, setUsernameError] = useState(""); 
+    const [fullName, setFullName] = useState("");
+    
     //email
     const [newEmail, setNewEmail] = useState("");
     const [existingEmails, setExistingEmails] = useState<string[]>([]);
-    const [emailError, setEmailError] = useState(""); // Estado para mensaje de error de correo electrónico
+    const [emailError, setEmailError] = useState(""); 
+    
     //password
+    const [pass, setPass] = useState ("");
     const [newPass, setNewPass] = useState("");
     const [repeatPass, setRepeatPass] = useState("");
-    const [passwordError, setPasswordError] = useState(""); // Estado para mensaje de error de contraseña
+    const [passError, setPassError] = useState(""); 
+    const [newPassError, setNewPassError] = useState("");
 
     const [saveStatus, setSaveStatus] = useState("");
     const user = Users.find((user) => user.id === userData.id);
@@ -41,9 +48,9 @@ export default function Settings() {
         if (user) {
             setUserData(user);
         }
-        const usernames: string[] = Users.map((user) => user.nombre);
+        const usernames: string[] = Users.map((user) => user.username);
         setExistingUsernames(usernames);
-        const emails: string[] = Users.map((user) => user.correo);
+        const emails: string[] = Users.map((user) => user.email);
         setExistingEmails(emails);
     }, [user]);
 
@@ -52,14 +59,23 @@ export default function Settings() {
         setUsernameError("");
     };
 
+    const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFullName(e.target.value);
+    }
+
     const handleEmailChange = (e:  React.ChangeEvent<HTMLInputElement>) => {
         setNewEmail(e.target.value);
         setEmailError("");
     };
 
     const handlePassChange = (e:  React.ChangeEvent<HTMLInputElement>) => {
+        setPass(e.target.value);
+        setPassError(""); 
+    };
+
+    const handleNewPassChange = (e:  React.ChangeEvent<HTMLInputElement>) => {
         setNewPass(e.target.value);
-        setPasswordError(""); 
+        setNewPassError(""); 
     };
 
     const handleRepeatPassChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -68,73 +84,94 @@ export default function Settings() {
 
     const handleSubmit = () => {
         
-        let status = true;
+        let isValid = true;
 
         // Verificar nuevo nombre
         const isExistingUsername = existingUsernames.some(username => username.toLowerCase() === newUsername.toLowerCase());
-        if (newUsername !== userData.nombre && newUsername !== "" &&  !isExistingUsername)  {
+        if (newUsername !== userData.username && newUsername !== "" &&  !isExistingUsername)  {
             setUserData((prevUserData) => ({
                 ...prevUserData,
-                nombre: newUsername
+                username: newUsername
             }));
         } else if (isExistingUsername) {
             setUsernameError("El nuevo nombre de usuario ya existe.");
-            status = false;
+            isValid = false;
         } else {
             setUserData((prevUserData) => ({
                 ...prevUserData,
-                nombre: prevUserData.nombre
+                username: prevUserData.username
             }));
         }
 
         // Verificar nuevo correo
         const isExistingEmail = existingEmails.includes(newEmail);
-        if (newEmail !== userData.correo && newEmail !== ""  && !isExistingEmail ) {
-            setUserData((prevUserData) => ({
-                ...prevUserData,
-                correo: newEmail
-            }));
+        if (newEmail !== userData.email && newEmail !== ""  && !isExistingEmail ) {
+            if(!validateEmail(newEmail)){
+                setEmailError("Debe de ingresar un email válido");
+                isValid = false;
+            } else {
+                setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    email: newEmail
+                }));
+            }  
         } else if (isExistingEmail) {
             setEmailError("El nuevo correo electrónico ya existe.");
-            status = false;
+            isValid = false;
         } else {
             setUserData((prevUserData) => ({
                 ...prevUserData,
-                correo: prevUserData.correo
+                email: prevUserData.email
             }));
+        }
+
+        //Verificar nueva contraseña
+        if(pass !== userData.password ){
+            setPassError("Contraseña incorrecta") 
+            isValid = false;           
+        } 
+        
+        if (pass == "") {
+            setPassError("Debe validar primero la contraseña actual")
+            isValid = false;
+        } else {
+            if (newPass !== userData.password && newPass !== "") {
+                if (!validatePassword(newPass)) {
+                    setNewPassError('La contraseña debe contener al menos 8 caracteres (letras y números)');
+                    isValid = false;
+                } else {
+                    setUserData((prevUserData) => ({
+                        ...prevUserData,
+                        password: newPass
+                    }));
+                } 
+                
+            } else if (newPass == userData.password) {
+                setNewPassError("La nueva contraseña debe ser diferente a la actual.");
+                isValid = false;
+            } else {
+                setUserData((prevUserData) => ({
+                    ...prevUserData,
+                    password: prevUserData.password
+                }));
+            }
+
+            if (newPass !== repeatPass)  {
+                setNewPassError("La nueva contraseña y la repetición no coinciden.");
+                isValid = false;
+                return; 
+            }
         }
         
-        // Verificar nueva contraseña
-        if (newPass !== userData.contrasenia && newPass !== "") {
-            setUserData((prevUserData) => ({
-                ...prevUserData,
-                contrasenia: newPass
-            }));
-        } else if (newPass == userData.contrasenia) {
-            setPasswordError("La nueva contraseña debe ser diferente a la actual.");
-            status = false;
-        } else {
-            setUserData((prevUserData) => ({
-                ...prevUserData,
-                contrasenia: prevUserData.contrasenia
-            }));
-        }
-
-        if (newPass !== repeatPass)  {
-            setPasswordError("La nueva contraseña y la repetición no coinciden.");
-            status = false;
-            return; 
-        }
-
         // Validar
-        if(status){
+        if(isValid){
             setSaveStatus("¡Guardado!");
             setNewUsername("");
             setNewEmail("");
+            setPass("");
             setNewPass("");
             setRepeatPass("");
         }
-
     };
 
     return (
@@ -142,10 +179,10 @@ export default function Settings() {
             <div className="flex md:-mt-8 flex-col h-5/6 md:scale-90 justify-around w-3/4 max-w-5xl">
                 <div className="flex justify-around">
                     <div className="flex justify-around items-center w-2/6">
-                        <Image src={user_img} alt="Imagen de perfil" width={100} height={100} className="rounded-full" />
+                    <Image src={user_img} alt="Imagen de perfil" width={100} height={100} className="rounded-full" />
                         <div className="text-black text-center">
-                            <p className="text-lg font-bold">{userData.correo}</p>
-                            <p className="text-gray-600">@{userData.nombre}</p>
+                            <p className="text-lg font-bold">{userData.email}</p>
+                            <p className="text-gray-600">@{userData.username}</p>
                         </div>
                     </div>
                     <div className="flex justify-center items-center mb-8 gap-5">
@@ -180,24 +217,29 @@ export default function Settings() {
                             placeholder="Introduzca su nueva contraseña"
                             type="password"
                             value={newPass}
-                            onChange={handlePassChange}
+                            onChange={handleNewPassChange}
                         />
-                        {passwordError && <span className="text-red-500">{passwordError}</span>}
+                        {newPassError && <span className="text-red-500">{newPassError}</span>}
                     </div>
                     <div className="w-1/3">
                         <InputForm
                             label="Nombre completo"
                             name="fullName"
-                            placeholder="Introduzca su nombre completo"
+                            placeholder={userData.fullname}
                             type="text"
-                            value={userData.nombre_completo}
+                            value={fullName}
+                            onChange={handleFullNameChange}
+
                         />
                         <InputForm
                             label="Contraseña Actual"
                             name="actualPassword"
                             placeholder="Introduzca su actual contraseña"
                             type="password"
+                            value={pass}
+                            onChange={handlePassChange}
                         />
+                        {passError && <span className="text-red-500">{passError}</span>}
                         <InputForm
                             label="Repita su nueva contraseña"
                             name="rePassword"
