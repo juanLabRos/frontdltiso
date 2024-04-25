@@ -7,6 +7,7 @@ import { fetchCheckMail } from '@/app/lib/data';
 import { useDebouncedCallback } from 'use-debounce';
 import { register } from '@/app/api/auth/register/route';
 import { User } from '@/app/lib/definitions';
+import { validatePassword } from "@/app/utils/validatePassword"
 import ErrorModal from './ErrorModal';
 import { useRouter } from 'next/navigation';
 import { UserContext } from '@/app/context/UserContext';
@@ -18,7 +19,7 @@ export default function NewAccount(){
     const [error,setError]= useState(null)
     const [passwordError,setPasswordError]= useState('')
 
-    //Chech Email
+    //Check Email
     const handleMail=useDebouncedCallback(async (e:any)=>{
       e.target.value==''? setMailError('El correo no puede estar vacio'): ''
       const user = await fetchCheckMail({mail:e.target.value})
@@ -29,14 +30,23 @@ export default function NewAccount(){
       }
     },200)
 
-    const handleInputForm=useDebouncedCallback((e:any)=>{
+    //Check Password
+    const handleInputForm = useDebouncedCallback((e: any) => {
       const { password, rePasword } = e.target.form as HTMLFormElement;
-      if(password.value !== rePasword.value){
-        setPasswordError('Las contraseñas no coinciden')
-      }else{
-        setPasswordError('')
+    
+      if (password.value !== rePasword.value) {
+          setPasswordError('Las contraseñas no coinciden');
+      } else {
+
+        if (!validatePassword(password.value)) {
+            setPasswordError('La contraseña debe contener al menos 8 caracteres (letras y números)');
+        } else {
+            setPasswordError('');
+        }
       }
-    },200)
+    }, 200);
+  
+
     //Send Register
     const handleSubmit=async(e: FormEvent<HTMLFormElement>)=>{
       e.preventDefault()

@@ -44,8 +44,8 @@ export default function Header() {
                         <Link className={`px-3`} onClick={() => setActiveLinkIndex('tickets')} href={`../dashboard/tickets`}>
                             <Image src={activeLinkIndex === 'tickets' ? "/tickets1.svg" : "/tickets.svg"} alt="" width={60} height={20} />
                         </Link>
-                        <Link className={`px-3`} onClick={() => setActiveLinkIndex('ajustes')} href={`../dashboard/ajustes`}>
-                            <Image src={activeLinkIndex === 'ajustes' ? "/settings1.svg" : "/settings.svg"} alt="" width={60} height={20} />
+                        <Link className={`px-3`} onClick={() => setActiveLinkIndex('ajustes')} href={`../dashboard/settings`}>
+                            <Image src={activeLinkIndex === 'settings' ? "/settings1.svg" : "/settings.svg"} alt="" width={60} height={20} />
                         </Link>
                     </div>
                 </article>
