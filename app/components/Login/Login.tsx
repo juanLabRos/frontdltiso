@@ -84,7 +84,7 @@ export default function Login(){
                   </div>
                     {/* --- FORGOTTEN PASSWORD ---- */}
                   <div className="text-sm leading-6 flex justify-end">
-                    <a href="../forgotPassword" className= "underline font-semibold text-right hover:text-customTeal-semidark">
+                    <a href="../resetPassword" className= "underline font-semibold text-right hover:text-customTeal-semidark">
                       ¿Olvidaste la contraseña?
                     </a>
                   </div>
