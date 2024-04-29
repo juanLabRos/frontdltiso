@@ -3,6 +3,8 @@ export interface User {
     username: string;
     password: string;
     email: string;
+    fullname: string;
+    usertype: string;
     company:string;
   };
 
