@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import ErrorModal from "../Login/ErrorModal";
 import ButtonCustom from "../Login/ButtonCustom";
 import InputForm from "../Login/InputForm";
+import Link from "next/link";
 
 export default function ResetPassword() {
     const router = useRouter()
@@ -80,9 +81,11 @@ export default function ResetPassword() {
                         {/* --- BTN CAMBIAR CONTRASEÑA ---- */}
                         <div style={{ marginBottom: '5rem' }}></div>
                         <div className="mt-1">
+                        <Link href={'../login'}>
                             <ButtonCustom>
                                 Cambiar contraseña
                             </ButtonCustom>
+                        </Link>
                         </div>
                     </form>
                 </div>
