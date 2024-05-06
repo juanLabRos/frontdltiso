@@ -1,6 +1,6 @@
 'use client'
 //Imports
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { signIn } from 'next-auth/react'
 import { useRouter } from "next/navigation";
 
@@ -12,10 +12,12 @@ import Image from 'next/image'
 import Link from "next/link";
 import {GoogleSignInButton} from "./AuthButtons"
 import { GithubSignInButton } from "./AuthButtons";
+import { UserContext } from "@/app/context/UserContext";
 
 
 export default function Login(){
   const router= useRouter()
+  const {setUsuario} = useContext(UserContext)
   const [errors, setErrors] = useState(false);
   const [email, setEmail] = useState("test@test.com");
   const [password, setPassword] = useState("123123");
@@ -37,6 +39,10 @@ export default function Login(){
     });
     
     if (responseNextAuth?.error) {
+      if(responseNextAuth.error==="Account not activated"){
+        setUsuario({ email }); 
+        router.push('/register/validation')
+      } 
       setErrors(true)
       return;
     }

@@ -3,6 +3,7 @@ import { activateAccount } from "@/app/api/auth/register/route"
 import ButtonCustom from "@/app/components/Login/ButtonCustom"
 import ErrorModal from "@/app/components/Login/ErrorModal"
 import { UserContext } from "@/app/context/UserContext"
+import { reSendEmail } from "@/app/lib/data"
 import Image from "next/image"
 import { useRouter } from "next/navigation"
 import { FormEvent, useContext, useState } from "react"
@@ -11,7 +12,8 @@ export default function Validation(){
     const [error, setError] = useState('')
     const router= useRouter()
     const { usuario } = useContext(UserContext)
-
+    console.log(usuario);
+    
     const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault()
         const { validationNumber } = e.target as HTMLFormElement;
@@ -29,6 +31,16 @@ export default function Validation(){
             setError(error.message)
         }
 
+    }
+    const handleNewSend = async () => {
+        try {
+            if (usuario) {
+                const newSend=await reSendEmail({email:usuario.email})
+                if(newSend)  setError('Se ha enviado un nuevo código')
+            }
+        } catch (error: any) {
+            setError(error.message)
+        }
     }
     return (
         <div className="text-black grid items-center h-screen">
@@ -52,7 +64,7 @@ export default function Validation(){
                 }
                 <form action="#" className="flex items-center flex-col w-full h-2/5 justify-around" onSubmit={handleSubmit}>
                     <input className="border text-center font-bold text-xl tracking-widest w-2/4 h-14 border-gray-700 rounded-md " type="number" maxLength={6} minLength={6} required  name="validationNumber" id="validationNumber" />
-                    <a className="w-2/4 text-customTeal-medium font-bold  underline" href="#">Volver a enviar</a>
+                    <a className="w-2/4 text-customTeal-medium font-bold  underline" onClick={handleNewSend}>Volver a enviar</a>
                     <div className=" w-2/6 text-white font-bold py-2 px-4 ">
                         <ButtonCustom>Enviar</ButtonCustom>
                     </div>
