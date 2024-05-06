@@ -7,7 +7,6 @@ import { useRouter } from "next/navigation";
 import ErrorModal from "../Login/ErrorModal";
 import ButtonCustom from "../Login/ButtonCustom";
 import InputForm from "../Login/InputForm";
-import Link from "next/link";
 
 export default function ResetPassword() {
     const router = useRouter()
