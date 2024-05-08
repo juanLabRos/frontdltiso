@@ -7,6 +7,7 @@ const handler = NextAuth({
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      redirectUri: 'http://localhost:3000/dashboard',
     }),
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
