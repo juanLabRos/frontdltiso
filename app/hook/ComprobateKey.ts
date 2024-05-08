@@ -9,7 +9,6 @@ export default function useComprobateKey () {
 
 
   useEffect(() => {
-    console.log('pasa');
     
     const id = param.get("id");
     if (id) {
@@ -23,6 +22,7 @@ export default function useComprobateKey () {
         });
     } else {
       setKey(false);
+      setLoad(true);
     }
   }, [param]);
 

@@ -1,6 +1,5 @@
 // forgot-password.js
-
-import ForgotPassword from '../components/ForgotPassword/ForgotPassword'
+import ResetPassword from "@/app/components/ResetPassword/ResetPassword";
 import Image from 'next/image'
 
 export default function ForgotPasswordPage() {
@@ -30,7 +29,7 @@ export default function ForgotPasswordPage() {
               />
             </div>
               {/* --- INICIO DE SESION ---- */}
-              <ForgotPassword/>
+              <ResetPassword/>
           </div>
         </div>
       </div>

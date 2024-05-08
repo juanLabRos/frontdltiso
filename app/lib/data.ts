@@ -13,8 +13,9 @@ async function backConnect() {
             body: JSON.stringify(data),
             headers: { 'Content-Type': 'application/json' },
         });
-
+        
         const user = await response.json();
+
         if (user.statusCode) throw new Error(user.message); // Manejo de errores
         return user;
     } catch (error) {
@@ -71,6 +72,7 @@ export async function enviarKeyMail(email:string): Promise<boolean> {
           });
 
         const code = await response.json();
+        console.log(code)
         if (code.statusCode) throw new Error(code.message); // Manejo de errores
         return code;
     } catch (error) {
@@ -79,7 +81,6 @@ export async function enviarKeyMail(email:string): Promise<boolean> {
 }
 
 export default async function getTokenPassword(id:string): Promise<boolean>{
-    console.log(id)
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/resetPassword`, {
         method: 'POST',
         body: JSON.stringify({ id }),
