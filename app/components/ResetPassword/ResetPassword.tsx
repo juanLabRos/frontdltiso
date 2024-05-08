@@ -10,6 +10,7 @@ import InputForm from "../Login/InputForm";
 import { validatePassword } from "@/app/utils/validatePassword";
 import useComprobateKey from "@/app/hook/ComprobateKey";
 import { enviarKeyMail } from "@/app/lib/data";
+import Link from "next/link";
 
 export default function ResetPassword() {
     const router = useRouter()
@@ -95,10 +96,13 @@ export default function ResetPassword() {
                             key={'password2'}
                         />
                         {/* --- BTN CAMBIAR CONTRASEÑA ---- */}
+
                         <div className="mt-20">
+
                             <ButtonCustom>
                                 Cambiar contraseña
                             </ButtonCustom>
+                        </Link>
                         </div>
                     </form>
                 </div>) : (
