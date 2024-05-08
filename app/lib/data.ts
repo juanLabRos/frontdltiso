@@ -28,8 +28,9 @@ export async function fetchCheckMail({ mail }: { mail: string }) {
 
         if (!tkn.token) return null;
         
-        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/${mail}`, {
-            method: 'GET',
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
+            method: 'POST',
+            body: JSON.stringify({ mail }),
             headers: { 
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${tkn.token}`
@@ -37,7 +38,6 @@ export async function fetchCheckMail({ mail }: { mail: string }) {
         });
 
         const data = await response.json();
-        
         if (data.length>0) return null;
         return data;
     } catch (error) {
