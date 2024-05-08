@@ -1,4 +1,4 @@
 export function validatePassword(password: string){
-    const passwordRegex = /^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]{8,}$/;
+    const passwordRegex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,16}$/;
     return passwordRegex.test(password);
 }

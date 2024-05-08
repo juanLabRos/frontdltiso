@@ -62,3 +62,31 @@ export async function reSendEmail({email}: {email: string}){
         throw new Error('Error reSend Email: ' + error);
     }
 }
+export async function enviarKeyMail(email:string): Promise<boolean> {
+    try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/getPasswordKey`, {
+            method: 'POST',
+            body: JSON.stringify({ email }),
+            headers: { 'Content-Type': 'application/json' },
+          });
+
+        const code = await response.json();
+        if (code.statusCode) throw new Error(code.message); // Manejo de errores
+        return code;
+    } catch (error) {
+        throw new Error('Error reSend Email: ' + error);
+    }
+}
+
+export default async function getTokenPassword(id:string): Promise<boolean>{
+    console.log(id)
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/resetPassword`, {
+        method: 'POST',
+        body: JSON.stringify({ id }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    const data = await response.json();
+    return data
+}
