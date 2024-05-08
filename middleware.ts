@@ -1,14 +1,11 @@
 import { withAuth } from "next-auth/middleware"
 
-export default withAuth(
-  function middleware(req) {
-    console.log(req.nextauth.token)
+export default withAuth({
+  // Matches the pages config in `[...nextauth]`
+  pages: {
+    signIn: "/login",
+    error: "/login",
   },
-  {
-    callbacks: {
-      authorized: ({ token }) => token?.role === "admin",
-    },
-  }
-)
+})
 
 export const config = { matcher: ["/dashboard"] }

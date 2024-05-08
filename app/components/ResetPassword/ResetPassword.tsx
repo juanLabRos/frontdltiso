@@ -7,14 +7,19 @@ import { useRouter } from "next/navigation";
 import ErrorModal from "../Login/ErrorModal";
 import ButtonCustom from "../Login/ButtonCustom";
 import InputForm from "../Login/InputForm";
+import { validatePassword } from "@/app/utils/validatePassword";
+import useComprobateKey from "@/app/hook/ComprobateKey";
+import { enviarKeyMail } from "@/app/lib/data";
 import Link from "next/link";
 
 export default function ResetPassword() {
     const router = useRouter()
     const [errors, setErrors] = useState(false);
-    const [password1, setPassword1] = useState("123123");
-    const [password2, setPassword2] = useState("123123");
+    const [password1, setPassword1] = useState("");
+    const [password2, setPassword2] = useState("");
+    const [email,setEmail]= useState('')
     const [errorMessage, setErrorMessage] = useState("");
+    const {key,load}= useComprobateKey()
 
   
     const handlePassChange = (e: any) => {
@@ -27,26 +32,38 @@ export default function ResetPassword() {
   
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        const uppercaseRegex = /[A-Z]/; // Expresión regular para verificar mayúsculas
-        const lowercaseRegex = /[a-z]/; // Expresión regular para verificar minúsculas
-        const numberRegex = /[0-9]/; // Expresión regular para verificar números
-
 
         if (password1 !== password2) {
             setErrorMessage("Las contraseñas no coinciden");
             setErrors(true);
             return;
-        } else if (password1.length < 8 || !uppercaseRegex.test(password1) || !lowercaseRegex.test(password1) || !numberRegex.test(password1)) {
-            setErrorMessage("La contraseña debe tener al menos 8 caracteres y contener al menos una letra mayúscula, una letra minúscula y un número.");
-            setErrors(true);
+        } else if (!validatePassword(password1)) {
+            setErrorMessage('La contraseña debe contener al menos 8 caracteres (letras y números)');
             setPassword1('');
             setPassword2('');
-            return;
         } else {
-            // Si las contraseñas coinciden y tienen al menos 8 caracteres, redirige al usuario
-            router.push("../login");
+            setErrorMessage('');
+            router.push('../login')
         }
     };
+    const handleEmailSubmit=async(e: React.FormEvent<HTMLFormElement>)=>{
+        e.preventDefault()
+        if(email=='') {
+            setErrorMessage('El email no puede estar vacio')
+            setErrors(true)
+            return
+        }
+        //Enviar mail
+        const res= await enviarKeyMail(email)
+        if(res){
+            setErrorMessage('Email enviado')
+            setErrors(true)
+            router.push('../login')
+        }else{
+            setErrorMessage('Email no enviado')
+            setErrors(true)
+        }
+    }
     
 
 
@@ -56,7 +73,7 @@ export default function ResetPassword() {
                 <h2 className="mt-2 md:mt-5 text-center text-3xl tracking-wider font-bold leading-9 text-white">
                     Nueva contraseña
                 </h2>
-                <div className="mt-3 md:mt-4 w-9/12 max-w-md">
+                {load && key ? (<div className="mt-3 md:mt-4 w-9/12 max-w-md">
                     {errors ? <ErrorModal message={errorMessage} /> : ''}
                     {/* --- FORMULARIO ---- */}
                     <form className="space-y-5" method="POST" onSubmit={handleSubmit}>
@@ -79,16 +96,37 @@ export default function ResetPassword() {
                             key={'password2'}
                         />
                         {/* --- BTN CAMBIAR CONTRASEÑA ---- */}
-                        <div style={{ marginBottom: '5rem' }}></div>
-                        <div className="mt-1">
-                        <Link href={'../login'}>
+
+                        <div className="mt-20">
+
                             <ButtonCustom>
                                 Cambiar contraseña
                             </ButtonCustom>
                         </Link>
                         </div>
                     </form>
-                </div>
+                </div>) : (
+                    <div className="mt-3 md:mt-4 w-9/12 max-w-md">
+                        {errors ? <ErrorModal message={errorMessage} /> : ''}
+                        <form className="space-y-5" method="POST" onSubmit={handleEmailSubmit}>
+                            {/* --- NUEVA CONTRASEÑA ---- */}
+                            <InputForm
+                                onChange={(value)=> setEmail(value.target.value)}
+                                label="Introduzca su email"
+                                name="email"
+                                placeholder='correo@correo.es'
+                                type='email'
+                                key={'password1'}
+                            />
+                            {/* --- BTN ENVIAR MAIL ---- */}
+                            <div className="mt-20">
+                                <ButtonCustom>
+                                    Enviar Mail
+                                </ButtonCustom>
+                            </div>
+                        </form>
+                    </div>
+                )}
             </div>
         </>
     )

@@ -3,7 +3,7 @@ import { createContext, useState, FC, ReactNode } from 'react';
 
 // Definición de tipos para la información del usuario
 type UserData = {
-  id: number;
+  id?: number;
   email: string;
   // Agrega más propiedades según sea necesario
 };
