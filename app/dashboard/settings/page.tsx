@@ -176,23 +176,25 @@ export default function Settings() {
 
     return (
         <div className="h-screen flex justify-center">
-            <div className="flex md:-mt-8 flex-col h-5/6 md:scale-90 justify-around w-3/4 max-w-5xl">
-                <div className="flex justify-around">
-                    <div className="flex justify-around items-center w-2/6">
-                    <Image src={user_img} alt="Imagen de perfil" width={100} height={100} className="rounded-full" />
-                        <div className="text-black text-center">
+            <div className="flex flex-col justify-around w-full max-w-3xl px-4">
+                <div className="flex justify-center items-center flex-col md:flex-row md:justify-between">
+                    <div className="flex justify-center items-center md:mb-0 mb-4">
+                        <Image src={user_img} alt="Imagen de perfil" width={100} height={100} className="rounded-full" />
+                        <div className="text-black text-center ml-4">
                             <p className="text-lg font-bold">{userData.email}</p>
                             <p className="text-gray-600">@{userData.username}</p>
                         </div>
                     </div>
-                    <div className="flex justify-center items-center mb-8 gap-5">
+                    <div className="flex justify-center items-center gap-5 md:mb-0 mb-4">
                         <ButtonCustom>
-                            <span className="text-sm font-semibol leading-7">Cambiar foto</span>
+                            <span className="text-sm font-semibold leading-7">Cambiar foto</span>
                         </ButtonCustom>
                     </div>
                 </div>
-                <div className="flex justify-around text-black">
-                    <div className="w-1/3">
+
+            <div className="flex justify-center md:justify-between text-black flex-col md:flex-row mb-5 md:mb-0">
+                <div className="w-full md:w-1/2 md:mr-4">
+                    <div className="mb-4"> 
                         <InputForm
                             label="Nombre de usuario"
                             name="user"
@@ -202,15 +204,19 @@ export default function Settings() {
                             onChange={handleUsernameChange}
                         />
                         {usernameError && <span className="text-red-500">{usernameError}</span>}
+                    </div>
+                    <div className="mb-4"> 
                         <InputForm
-                            label="Correo electronico"
+                            label="Correo electrónico"
                             name="email"
-                            placeholder="Introduzca su correo electronico"
+                            placeholder="Introduzca su correo electrónico"
                             type="email"
                             value={newEmail}
                             onChange={handleEmailChange}
                         />
                         {emailError && <span className="text-red-500">{emailError}</span>}
+                    </div>
+                    <div className="mb-4"> 
                         <InputForm
                             label="Nueva contraseña"
                             name="newPassword"
@@ -221,7 +227,10 @@ export default function Settings() {
                         />
                         {newPassError && <span className="text-red-500">{newPassError}</span>}
                     </div>
-                    <div className="w-1/3">
+                </div>
+
+                <div className="w-full md:w-1/2">
+                    <div className="mb-4"> 
                         <InputForm
                             label="Nombre completo"
                             name="fullName"
@@ -229,8 +238,9 @@ export default function Settings() {
                             type="text"
                             value={fullName}
                             onChange={handleFullNameChange}
-
                         />
+                    </div>
+                    <div className="mb-4"> 
                         <InputForm
                             label="Contraseña Actual"
                             name="actualPassword"
@@ -240,6 +250,8 @@ export default function Settings() {
                             onChange={handlePassChange}
                         />
                         {passError && <span className="text-red-500">{passError}</span>}
+                    </div>
+                    <div className="mb-4"> 
                         <InputForm
                             label="Repita su nueva contraseña"
                             name="rePassword"
@@ -250,6 +262,10 @@ export default function Settings() {
                         />
                     </div>
                 </div>
+                
+                
+            </div>
+
                 <div className="flex flex-col items-center">
                     {saveStatus && <span className="text-blue-500">{saveStatus}</span>}
                     <div className="flex justify-center mt-4">
@@ -261,4 +277,5 @@ export default function Settings() {
             </div>
         </div>
     );
+    
 }

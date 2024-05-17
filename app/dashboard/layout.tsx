@@ -1,16 +1,14 @@
 import Aside from "../components/Aside";
 import Header from "../components/Header";
 
-export default function LayoutDashBoard({children}: {children: React.ReactNode}) {
-        
-    
-    return(
+export default function LayoutDashBoard({ children }: { children: React.ReactNode }) {
+    return (
         <>
-            <div className="flex max-h-[1200px] mx-center border h-screnn max-w-[2400px]">
-                <div className="relative  w-36">
+            <div className="flex flex-col lg:flex-row max-h-screen lg:max-h-[1200px] mx-auto border ">
+                <div className="lg:relative lg:w-36 h-full">
                     <Aside />
                 </div>
-                <div className="flex w-full flex-col">
+                <div className="flex flex-col w-full max-w-screen">
                     <Header />
                     {children}
                 </div>
