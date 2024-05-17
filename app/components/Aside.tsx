@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import { signOut } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Image from "next/image";
@@ -10,54 +10,111 @@ interface AsideContentProps {
 }
 
 function AsideContent({ currentPath }: AsideContentProps) {
+    
+    const [isMenuOpen, setIsMenuOpen] = useState(false)
     const [activeLinkIndex, setActiveLinkIndex] = useState<number | false>(false);
 
     const pathname = usePathname();
     const ruta = pathname.split('/')[pathname.split('/').length - 1];
 
-    const arrTitles: {[key: string]: number} = {
+    const arrTitles: { [key: string]: number } = {
         "dashboard": 0,
-        "preguntas": 1,
+        "wizard": 1,
         "analytics": 2,
         "policies": 3,
         "premium": 4
-    }
+    };
 
     useEffect(() => {
         const index = arrTitles[ruta];
         setActiveLinkIndex(index === undefined ? false : index);
     }, [ruta]);
 
-    return (
-        <aside className="bg-customTeal-medium max-h-[1100px] z-10 p-1 rounded-l-lg h-screen flex flex-col fixed left-0 top-0 justify-between">
-            <div>
-                <Link className="flex p-4 border-b" href="../dashboard">
-                    <Image src="/dltcode.png" alt="dashboard" width={90} height={20} />
-                </Link>
-                <article className="m-7">
-                    <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
-                        <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
-                    </Link>
-                    <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/questions">
-                        <Image src={activeLinkIndex === 1 ? "/questions1.svg" : "/questions.svg"} alt="dashboard" width={40} height={20} />
-                    </Link>
-                    <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
-                        <Image src={activeLinkIndex === 2 ? "/graph1.svg" : "/graph.svg"} alt="dashboard" width={40} height={20} />
-                    </Link>
-                    <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
-                        <Image src={activeLinkIndex === 3 ? "/policies1.svg" : "/policies.svg"} alt="dashboard" width={40} height={20} />
-                    </Link>
-                    <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
-                        <Image src={activeLinkIndex === 4 ? "/premium1.svg" : "/premium.svg"} alt="dashboard" width={40} height={20} />
-                    </Link>
-                </article>
-            </div>
 
-            {/* Icono de apagar */}
-            <button onClick={()=>{signOut()}} className="flex px-9 pb-3">
-                <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
+    return (
+        <>
+            <aside className={`bg-customTeal-medium max-h-[1100px] z-10 p-1 rounded-l-lg min-h-screen flex flex-col fixed left-0 top-0 justify-between transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300`}>
+                <div>
+                    <Link className="flex p-4 border-b" href="../dashboard">
+                        <Image src="/dltcode.png" alt="dashboard" width={90} height={20} />
+                    </Link>
+                    <article className="m-7">
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
+                            <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
+                        </Link>
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/wizard">
+                            <Image src={activeLinkIndex === 1 ? "/wizard1.svg" : "/wizard.svg"} alt="dashboard" width={40} height={20} />
+                        </Link>
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
+                            <Image src={activeLinkIndex === 2 ? "/graph1.svg" : "/graph.svg"} alt="dashboard" width={40} height={20} />
+                        </Link>
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
+                            <Image src={activeLinkIndex === 3 ? "/policies1.svg" : "/policies.svg"} alt="dashboard" width={40} height={20} />
+                        </Link>
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
+                            <Image src={activeLinkIndex === 4 ? "/premium1.svg" : "/premium.svg"} alt="dashboard" width={40} height={20} />
+                        </Link>
+                    </article>
+                </div>
+
+                {/* Icono de apagar */}
+                <button onClick={() => { signOut(); }} className="flex px-9 pb-3">
+                    <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
+                </button>
+            </aside>
+
+            {/* Botón de menú para dispositivos móviles */}
+            <button 
+                className="md:hidden fixed top-4 left-4 z-20 bg-customTeal-medium text-white p-2 rounded" 
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+                {isMenuOpen ? (
+                    /* SVG para cerrar el menú */
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                ) : (
+                    /* SVG para abrir el menú */
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                )}
             </button>
-        </aside>
+
+            {/* Menú está abierto en móviles */}
+            {isMenuOpen && (
+                <div className="fixed inset-0 z-20 md:hidden" onClick={() => setIsMenuOpen(false)}>
+                    <aside className="bg-customTeal-medium max-h-[1100px] z-30 p-1 rounded-l-lg h-screen flex flex-col fixed left-0 top-0 justify-between transform transition-transform duration-300">
+                        <div className="overflow-y-auto">
+                            <Link className="flex p-4 border-b" href="../dashboard">
+                                <Image src="/dltcode.png" alt="dashboard" width={90} height={20} />
+                            </Link>
+                            <article className="m-7">
+                                <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
+                                    <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
+                                </Link>
+                                <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/wizard">
+                                    <Image src={activeLinkIndex === 1 ? "/wizard1.svg" : "/wizard.svg"} alt="dashboard" width={40} height={20} />
+                                </Link>
+                                <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
+                                    <Image src={activeLinkIndex === 2 ? "/graph1.svg" : "/graph.svg"} alt="dashboard" width={40} height={20} />
+                                </Link>
+                                <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
+                                    <Image src={activeLinkIndex === 3 ? "/policies1.svg" : "/policies.svg"} alt="dashboard" width={40} height={20} />
+                                </Link>
+                                <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
+                                    <Image src={activeLinkIndex === 4 ? "/premium1.svg" : "/premium.svg"} alt="dashboard" width={40} height={20} />
+                                </Link>
+                            </article>
+                        </div>
+                        
+                        <button onClick={() => { signOut(); }} className="flex px-9 pb-3">
+                            <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
+                        </button>
+                    </aside>
+                </div>
+            )}
+        </>
     );
 }
 

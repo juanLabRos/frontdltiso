@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function policies() {
     return (
-        <div className="flex h-screen">
+        <div className="flex h-screen flex-col items-center">
                 {/* Contenido de la página */}
                 <div className="flex flex-wrap p-14 justify-center m-20">
                     <div className="border rounded m-3 p-2">
