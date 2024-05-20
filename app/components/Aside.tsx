@@ -1,6 +1,6 @@
 "use client";
 import { signOut } from "next-auth/react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -53,19 +53,19 @@ function AsideContent({ currentPath }: AsideContentProps) {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
-                        <Link className={`flex px-3 py-5`} onClick={() => setActiveLinkIndex(0)} href="../dashboard">
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
                             <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
                         </Link>
-                        <Link className={`flex px-3 py-5`} onClick={() => setActiveLinkIndex(1)} href="../dashboard/wizard">
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/wizard">
                             <Image src={activeLinkIndex === 1 ? "/wizard1.svg" : "/wizard.svg"} alt="dashboard" width={40} height={20} />
                         </Link>
-                        <Link className={`flex px-3 py-5`} onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
                             <Image src={activeLinkIndex === 2 ? "/graph1.svg" : "/graph.svg"} alt="dashboard" width={40} height={20} />
                         </Link>
-                        <Link className={`flex px-3 py-5 `} onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
                             <Image src={activeLinkIndex === 3 ? "/policies1.svg" : "/policies.svg"} alt="dashboard" width={40} height={20} />
                         </Link>
-                        <Link className={`flex px-3 py-5 `} onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
                             <Image src={activeLinkIndex === 4 ? "/premium1.svg" : "/premium.svg"} alt="dashboard" width={40} height={20} />
                         </Link>
                     </article>
