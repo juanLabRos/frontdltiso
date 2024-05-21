@@ -102,5 +102,6 @@ export async function chatMessages(text:string,email:string): Promise<string>{
         },
     });
     const data = await response.json();
+    console.log(data)
     return data
-}
+} 

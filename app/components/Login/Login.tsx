@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 import ErrorModal from "./ErrorModal";
 import ButtonCustom from "./ButtonCustom";
 import InputForm from "./InputForm";
-import Image from 'next/image'
 import Link from "next/link";
 import {GoogleSignInButton} from "./AuthButtons"
 import { GithubSignInButton } from "./AuthButtons";
@@ -40,12 +39,13 @@ export default function Login(){
     
     if (responseNextAuth?.error) {
       if(responseNextAuth.error==="Account not activated"){
-        setUsuario({ email }); 
+        setUsuario({email,premium:false}); 
         router.push('/register/validation')
       } 
       setErrors(true)
       return;
     }
+   
     router.push("/dashboard");
 
   }
