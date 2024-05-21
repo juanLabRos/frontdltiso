@@ -20,6 +20,12 @@ const config: Config = {
           semidark: '#05616D',
           medium: '#226E79'
         },
+        customBlue:{
+          default: '#1d4ed8',
+          dark:'#1e40af',
+          semidark: '#0369a1',
+          medium: '#2563eb'
+        }
       },
     },
   },
