@@ -4,6 +4,8 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ChartBarIcon } from "@heroicons/react/24/solid";
+
 
 interface AsideContentProps {
     currentPath: string;
@@ -46,7 +48,11 @@ function AsideContent({ currentPath }: AsideContentProps) {
                             <Image src={activeLinkIndex === 1 ? "/wizard1.svg" : "/wizard.svg"} alt="dashboard" width={40} height={20} />
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
-                            <Image src={activeLinkIndex === 2 ? "/graph1.svg" : "/graph.svg"} alt="dashboard" width={40} height={20} />
+                            {activeLinkIndex === 2 ? (
+                                <ChartBarIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <ChartBarIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
                             <Image src={activeLinkIndex === 3 ? "/policies1.svg" : "/policies.svg"} alt="dashboard" width={40} height={20} />
