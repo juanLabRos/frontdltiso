@@ -13,7 +13,7 @@ interface InputFormProps {
 
 export default function InputForm({ label, name, type, placeholder, plcolor = '', onChange = () => {}, value = '' }: InputFormProps) {
   return (
-    <div>
+    <div className="w-10/12">
       <label htmlFor={name} className={`${plcolor} font-semibold block text-sm leading-8`}>
         {label}
       </label>
@@ -27,7 +27,7 @@ export default function InputForm({ label, name, type, placeholder, plcolor = ''
           onChange={onChange}
           value={value}
           placeholder={placeholder}
-          className={`block w-full indent-4 rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ${plcolor === '' ? 'placeholder:text-gray-400 text-gray-200' : `placeholder:${plcolor} ${plcolor}`} ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6`}
+          className={`block w-full indent-4 rounded-md border-0 py-1.5 shadow-sm ring-1 ring-inset ${plcolor === '' ? 'placeholder:text-gray-400 text-black' : `placeholder:${plcolor} ${plcolor}`} ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-gray-600 sm:text-sm sm:leading-6`}
         />
       </div>
     </div>
