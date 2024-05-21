@@ -1,5 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { UserContext } from "@/app/context/UserContext";
+import Link from "next/link";
+import { useState, useEffect, useContext } from "react";
 
 // Definición de la estructura de datos de los documentos
 interface Document {
@@ -18,6 +20,8 @@ const exampleDocuments: Document[] = [
 ];
 
 const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
+    const {usuario}= useContext(UserContext);
+    
     return (
         <div className="overflow-x-auto shadow-lg rounded-lg">
             <table className="min-w-full bg-white border">
@@ -36,9 +40,13 @@ const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
                             <td className="px-4 py-2 border text-black">{doc.createdAt}</td>
                             <td className="px-4 py-2 border text-black">{doc.createdBy}</td>
                             <td className="px-4 py-2 border text-black">
-                                <a href={doc.downloadLink} className="text-blue-500 hover:underline" download>
+                                {
+                                    usuario?.premium ? <a href={doc.downloadLink} className="text-blue-500 hover:underline" download>
                                     Descargar
-                                </a>
+                                </a> :  <Link href={'./premium'} className="text-blue-500 hover:underline" download>
+                                    Descargar
+                                </Link>
+                                }
                             </td>
                         </tr>
                     ))}
