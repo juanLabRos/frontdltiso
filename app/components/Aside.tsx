@@ -57,15 +57,7 @@ function AsideContent({ currentPath }: AsideContentProps) {
                     )}
                     
                     <article className="m-7">
-<<<<<<< HEAD
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
-                            <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
-=======
-                        <button className="flex px-5 py-5 text-white md:hidden" onClick={()=>setIsMenuOpen(false)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
+
                         {/*Icons and links*/}
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard/">
                             {activeLinkIndex === 0 ? (
@@ -73,7 +65,6 @@ function AsideContent({ currentPath }: AsideContentProps) {
                             ) : (
                                 <HomeIcon className="w-10 h-10 text-white-500" />
                             )}
->>>>>>> upstream/main
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard/wizard">
                             {activeLinkIndex === 1 ? (
