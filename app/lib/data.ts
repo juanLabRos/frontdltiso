@@ -80,7 +80,7 @@ export async function enviarKeyMail(email:string): Promise<boolean> {
     }
 }
 
-export default async function getTokenPassword(id:string): Promise<boolean>{
+export async function getTokenPassword(id:string): Promise<boolean>{
     const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/resetPassword`, {
         method: 'POST',
         body: JSON.stringify({ id }),
@@ -91,3 +91,17 @@ export default async function getTokenPassword(id:string): Promise<boolean>{
     const data = await response.json();
     return data
 }
+
+export async function chatMessages(text:string,email:string): Promise<string>{
+    
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/questions/newQuestion`, {
+        method: 'POST',
+        body: JSON.stringify({ text,email }),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    const data = await response.json();
+    console.log(data)
+    return data
+} 

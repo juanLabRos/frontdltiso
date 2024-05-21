@@ -4,6 +4,8 @@ import { useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { HomeIcon, ChatBubbleOvalLeftEllipsisIcon, ChartBarIcon, DocumentTextIcon, StarIcon, ArrowLeftEndOnRectangleIcon} from "@heroicons/react/16/solid";
+
 
 interface AsideContentProps {
     currentPath: string;
@@ -19,7 +21,7 @@ function AsideContent({ currentPath }: AsideContentProps) {
         "dashboard": 0,
         "wizard": 1,
         "analytics": 2,
-        "policies": 3,
+        "documets": 3,
         "premium": 4
     };
 
@@ -55,25 +57,49 @@ function AsideContent({ currentPath }: AsideContentProps) {
                     )}
                     
                     <article className="m-7">
+<<<<<<< HEAD
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
                             <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
+=======
+                        <button className="flex px-5 py-5 text-white md:hidden" onClick={()=>setIsMenuOpen(false)}>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                            </svg>
+                        </button>
+                        {/*Icons and links*/}
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard/">
+                            {activeLinkIndex === 0 ? (
+                                <HomeIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <HomeIcon className="w-10 h-10 text-white-500" />
+                            )}
+>>>>>>> upstream/main
                         </Link>
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/wizard">
-                            <Image src={activeLinkIndex === 1 ? "/wizard1.svg" : "/wizard.svg"} alt="dashboard" width={40} height={20} />
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard/wizard">
+                            {activeLinkIndex === 1 ? (
+                                <ChatBubbleOvalLeftEllipsisIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <ChatBubbleOvalLeftEllipsisIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
-                            <Image src={activeLinkIndex === 2 ? "/graph1.svg" : "/graph.svg"} alt="dashboard" width={40} height={20} />
-                        </Link>
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
-                            <Image src={activeLinkIndex === 3 ? "/policies1.svg" : "/policies.svg"} alt="dashboard" width={40} height={20} />
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/documents">
+                            {activeLinkIndex === 3 ? (
+                                <DocumentTextIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <DocumentTextIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
-                            <Image src={activeLinkIndex === 4 ? "/premium1.svg" : "/premium.svg"} alt="dashboard" width={40} height={20} />
+                            {activeLinkIndex === 4 ? (
+                                <StarIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <StarIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
                     </article>
                 </div>
                 <button onClick={() => { signOut(); }} className="flex px-9 pb-3">
-                    <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
+                    <ArrowLeftEndOnRectangleIcon  width={40} height={20} />
                 </button>
             </aside>
 
