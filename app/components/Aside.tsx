@@ -4,7 +4,7 @@ import { useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { HomeIcon, ChatBubbleOvalLeftEllipsisIcon, ChartBarIcon, DocumentTextIcon, StarIcon} from "@heroicons/react/16/solid";
+import { HomeIcon, ChatBubbleOvalLeftEllipsisIcon, ChartBarIcon, DocumentTextIcon, StarIcon, ArrowLeftEndOnRectangleIcon} from "@heroicons/react/16/solid";
 
 
 interface AsideContentProps {
@@ -21,7 +21,7 @@ function AsideContent({ currentPath }: AsideContentProps) {
         "dashboard": 0,
         "wizard": 1,
         "analytics": 2,
-        "policies": 3,
+        "documets": 3,
         "premium": 4
     };
 
@@ -70,14 +70,7 @@ function AsideContent({ currentPath }: AsideContentProps) {
                                 <ChatBubbleOvalLeftEllipsisIcon className="w-10 h-10 text-white-500" />
                             )}
                         </Link>
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
-                            {activeLinkIndex === 2 ? (
-                                <ChartBarIcon className="w-10 h-10 text-blue-500" />
-                            ) : (
-                                <ChartBarIcon className="w-10 h-10 text-white-500" />
-                            )}
-                        </Link>
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/documents">
                             {activeLinkIndex === 3 ? (
                                 <DocumentTextIcon className="w-10 h-10 text-blue-500" />
                             ) : (
@@ -85,12 +78,16 @@ function AsideContent({ currentPath }: AsideContentProps) {
                             )}
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
-                            <Image src={activeLinkIndex === 4 ? "/premium1.svg" : "/premium.svg"} alt="dashboard" width={40} height={20} />
+                            {activeLinkIndex === 4 ? (
+                                <StarIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <StarIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
                     </article>
                 </div>
                 <button onClick={() => { signOut(); }} className="flex px-9 pb-3">
-                    <Image src="/turnoff.png" alt="dashboard" width={40} height={20} />
+                    <ArrowLeftEndOnRectangleIcon  width={40} height={20} />
                 </button>
             </aside>
 
