@@ -4,7 +4,7 @@ import { useState, useEffect} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ChartBarIcon } from "@heroicons/react/24/solid";
+import { HomeIcon, ChatBubbleOvalLeftEllipsisIcon, ChartBarIcon, DocumentTextIcon, StarIcon} from "@heroicons/react/16/solid";
 
 
 interface AsideContentProps {
@@ -55,11 +55,20 @@ function AsideContent({ currentPath }: AsideContentProps) {
                                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
                             </svg>
                         </button>
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard">
-                            <Image src={activeLinkIndex === 0 ? "/dashboard1.svg" : "/dashboard.svg"} alt="dashboard" width={40} height={20} />
+                        {/*Icons and links*/}
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard/">
+                            {activeLinkIndex === 0 ? (
+                                <HomeIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <HomeIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
-                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(1)} href="../dashboard/wizard">
-                            <Image src={activeLinkIndex === 1 ? "/wizard1.svg" : "/wizard.svg"} alt="dashboard" width={40} height={20} />
+                        <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard/wizard">
+                            {activeLinkIndex === 1 ? (
+                                <ChatBubbleOvalLeftEllipsisIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <ChatBubbleOvalLeftEllipsisIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(2)} href="../dashboard/analytics">
                             {activeLinkIndex === 2 ? (
@@ -69,7 +78,11 @@ function AsideContent({ currentPath }: AsideContentProps) {
                             )}
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(3)} href="../dashboard/policies">
-                            <Image src={activeLinkIndex === 3 ? "/policies1.svg" : "/policies.svg"} alt="dashboard" width={40} height={20} />
+                            {activeLinkIndex === 3 ? (
+                                <DocumentTextIcon className="w-10 h-10 text-blue-500" />
+                            ) : (
+                                <DocumentTextIcon className="w-10 h-10 text-white-500" />
+                            )}
                         </Link>
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(4)} href="../dashboard/premium">
                             <Image src={activeLinkIndex === 4 ? "/premium1.svg" : "/premium.svg"} alt="dashboard" width={40} height={20} />
