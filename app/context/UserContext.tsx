@@ -1,5 +1,7 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 'use client'
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import { createContext, useState, FC, ReactNode, useEffect } from 'react';
 
 // Definición de tipos para la información del usuario
@@ -34,6 +36,7 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         email: session.user.email,
         premium: false
       });
+      
     }
   }, [session]);
 

@@ -33,7 +33,9 @@ export default function Wizzard() {
         setLoading(true);
         const res=await chatMessages(target.mensaje.value, userData.email);
         await setLoading(false);
+        console.log(res)
         setMessages((prev) => [...prev, res]);
+        console.log(messages)
         console.log(messages);
         
 
