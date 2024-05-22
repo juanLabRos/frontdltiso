@@ -86,16 +86,17 @@ export default function NewAccount(){
                 <form className="flex flex-col min-w-40 justify-around  h-full text-black" onSubmit={handleSubmit} method="POST">
                     <InputForm label='Nombre de Usuario' plcolor="text-customTeal-dark" name='nombre' placeholder='Introduzca su nombre de usuario' type='text' key={'username'}/>
                     {/* --- EMAIL ---- */}
+                    
+                    <InputForm label='Correo Electrónico' onBlur={handleMail} plcolor="text-customTeal-dark" name='email' placeholder='Introduzca su correo electronico' type='email' key={'email'}/>
                     {
                       mailError != '' ? <p className="text-red-500 text-xs text-center">{mailError}</p> : ''
                     }
-                    <InputForm label='Correo Electrónico' onBlur={handleMail} plcolor="text-customTeal-dark" name='email' placeholder='Introduzca su correo electronico' type='email' key={'email'}/>
-                      {/* --- CONTRASEÑA ---- */}
+                    {/* --- CONTRASEÑA ---- */}
+                    <InputForm label='Contraseña' name='password' plcolor="text-customTeal-dark" placeholder='*******' type='password' key={'pasword'}/>
+                    <InputForm onBlur={handleInputForm} label='Repita su contraseña' plcolor="text-customTeal-dark" name='rePasword' placeholder='*******' type='password' key={'rePassword'}/>
                     {
                       passwordError && <p className="text-red-500 text-xs text-center">{passwordError}</p>
                     }
-                    <InputForm label='Contraseña' name='password' plcolor="text-customTeal-dark" placeholder='*******' type='password' key={'pasword'}/>
-                    <InputForm onBlur={handleInputForm} label='Repita su contraseña' plcolor="text-customTeal-dark" name='rePasword' placeholder='*******' type='password' key={'rePassword'}/>
                     <InputForm label='Empresa' plcolor="text-customTeal-dark" name='compania' placeholder='Introduza el nombre de su empresa' type='text' key={'businness'}/>
                     {/* --- BTN SESION ---- */}
                     <span className="hidden md:block mt-3 text-sm text-white text-center md:text-gray-700">Si ya estas Registrado. <Link className='text-customTeal-dark font-bold ' href={'/'}> Iniciar Sesión</Link></span>

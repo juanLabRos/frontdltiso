@@ -1,7 +1,9 @@
 "use client";
+
 import { UserContext } from "@/app/context/UserContext";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
+
 
 // Definición de la estructura de datos de los documentos
 interface Document {
@@ -20,8 +22,8 @@ const exampleDocuments: Document[] = [
 ];
 
 const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
+
     const {usuario}= useContext(UserContext);
-    
     return (
         <div className="overflow-x-auto shadow-lg rounded-lg">
             <table className="min-w-full bg-white border">
