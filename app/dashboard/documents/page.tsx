@@ -25,8 +25,8 @@ const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
 
     const {usuario}= useContext(UserContext);
     return (
-        <div className="overflow-x-auto shadow-lg rounded-lg">
-            <table className="min-w-full bg-white border">
+        <div className=" px-20 rounded-lg">
+            <table className="w-full bg-200 border">
                 <thead>
                     <tr className="bg-gray-200">
                         <th className="px-4 py-2 border text-black">Nombre</th>

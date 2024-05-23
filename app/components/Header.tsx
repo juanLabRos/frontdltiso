@@ -16,6 +16,7 @@ export default function Header() {
         policies: 'POLITICAS 📜',
         premium: 'PLANES 💎',
         wizard: 'WIZARD 💬',
+        documents: 'DOCUMENTOS 📄',
     };
 
     const [activeLinkIndex, setActiveLinkIndex] = useState<string | false>(false);

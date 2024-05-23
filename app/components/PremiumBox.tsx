@@ -4,28 +4,13 @@ import PremiumData from "@/app/components/PremiumData";
 
 export default function PremiumBox({ marked, price = 0, funcionality = 'basicas', typePrime = 'GRATIS' }: { marked: boolean, price?: number, funcionality?: string, typePrime?: string }) {
     
-    const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-
-    useEffect(() => {
-        const handleResize = () => {
-            setWindowWidth(window.innerWidth);
-        };
-
-        window.addEventListener('resize', handleResize);
-
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
-
-    const isSmallScreen = windowWidth < 1300;
 
     return (
         <>
-            <article className="flex flex-col text-center items-center ">
+            <article className="flex flex-col h-5/6 text-center items-center ">
                 <div>
                     <div className={`${typePrime === 'GRATIS' ? 'bg-[#D0659E]' : 'bg-[#30A695]'} text-center items-center py-2 rounded-t-xl`}>
-                        <span className="text-white text-[36px] font-bold">{typePrime}</span>
+                        <span className="text-white text-3xl font-bold">{typePrime}</span>
                     </div>
                     <div className={`${typePrime === 'GRATIS' ? 'bg-[#D981AE]' : 'bg-[#38C2AE]'} flex flex-col gap-3 text-center items-center w-[360px] `}>
                         <span className="text-3xl font-bold mt-3">{price}$</span>
@@ -35,9 +20,9 @@ export default function PremiumBox({ marked, price = 0, funcionality = 'basicas'
                 </div>
 
 
-                {isSmallScreen ? (
-                    <div className="flex flex-col text-center items-center gap-0.5 ">
+                    <div className="flex lg:hidden h-5/6  flex-col text-center items-center gap-0.5 ">
                         <PremiumData>Dashboard Inteligent</PremiumData>
+                        
                         
                         {marked ? (
                             <div className="flex flex-col text-center items-center gap-0.5">
@@ -46,18 +31,26 @@ export default function PremiumBox({ marked, price = 0, funcionality = 'basicas'
                                 <PremiumData>Analisis de Riesgo</PremiumData>
                                 <PremiumData>Politicas Generadas</PremiumData>
                             </div>
-                        ): null}
+                        ): 
+                        (
+                            <div className="flex flex-col text-center items-center gap-0.5">
+                            <PremiumData> </PremiumData>
+                            <PremiumData> </PremiumData>
+                            <PremiumData> </PremiumData>
+                            <PremiumData> </PremiumData>
+                            <PremiumData> </PremiumData>
+                            </div>
+                            
+                        )}
                     </div>
-                ) : (
-                    <div className="flex flex-col items-center gap-0.5 ">                      
+                    <div className="hidden lg:flex flex-col items-center gap-0.5 ">                      
                         <CheckBoxPremium marked={true} />                        
                         <CheckBoxPremium marked={marked}/> 
                         <CheckBoxPremium marked={marked} />
                         <CheckBoxPremium marked={marked} />
                         <CheckBoxPremium marked={marked} />
-                        <CheckBoxPremium marked={marked} />
-                    </div>)
-                }
+                    </div>
+                
             </article>
         </>
     )

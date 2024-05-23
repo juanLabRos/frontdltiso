@@ -42,7 +42,7 @@ function AsideContent({ currentPath }: AsideContentProps) {
 
     return (
         <>
-            <aside className={`bg-customTeal-medium max-h-[1100px] z-10 p-1 rounded-l-lg min-h-screen flex flex-col fixed left-0 top-0 justify-between transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300`}>
+            <aside className={`bg-customTeal-medium max-h-[1100px] z-10 p-1 rounded-l-lg min-h-screen fixed flex flex-col  left-0 top-0 justify-between transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300`}>
                 <div>
                     {isMenuOpen? ( 
                         <Link className="flex p-4 py-10 border-b" href="" onClick={()=>setIsMenuOpen(false)}>
