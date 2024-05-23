@@ -8,6 +8,7 @@ import { createContext, useState, FC, ReactNode, useEffect } from 'react';
 type UserData = {
   id?: number;
   email: string;
+  username: string;
   premium:boolean;
   // Agrega más propiedades según sea necesario
 };
@@ -30,13 +31,15 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
   const { data: session, status } = useSession();
 
   useEffect(() => {
+    const user = session?.user.user;
+    console.log(user)
     if (session) {
       setUsuario({
-        ...session.user,
-        email: session.user.email,
-        premium: false
+        id: user?.id, 
+        username: user?.username ?? '',
+        email: user?.email ?? '',
+        premium: user?.premium ? true : false,
       });
-      
     }
   }, [session]);
 

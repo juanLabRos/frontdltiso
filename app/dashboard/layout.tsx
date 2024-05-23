@@ -6,13 +6,13 @@ export default function LayoutDashBoard({ children }: { children: React.ReactNod
     
     return (
         <>
-            <div className="flex flex-col lg:flex-row max-h-screen lg:max-h-[1200px] mx-auto border ">
-                <div className="lg:relative lg:w-36 h-full">
-                    <Aside />
-                </div>
-                <div className="flex flex-col w-full max-w-screen">
+            <div className="flex min-h-screen mx-auto ">
+                <Aside />
+                <div className="flex ml-24 flex-col w-full  ">
                     <Header />
-                    {children}
+                    <div className="h-full">
+                        {children}
+                    </div>
                 </div>
             </div>
         </>

@@ -105,3 +105,22 @@ export async function chatMessages(text:string,email:string): Promise<string>{
     console.log(data.generatedText)
     return data.generatedText
 } 
+
+export async function payPremium(email:string):Promise<string>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/payment`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ priceId: 'price_1P1pl8006fS5TbMzjFrYqbm3', email }),
+      });
+      const result= await res.json()
+      return result.session
+}
+export async function changePremium(email:string):Promise<boolean>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/auth/changePremium`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email }),
+      });
+      const result= await res.json()
+      return result
+}
