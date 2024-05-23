@@ -44,17 +44,20 @@ function AsideContent({ currentPath }: AsideContentProps) {
         <>
             <aside className={`bg-customTeal-medium max-h-[1100px] z-10 p-1 rounded-l-lg min-h-screen fixed flex flex-col  left-0 top-0 justify-between transform ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:translate-x-0 transition-transform duration-300`}>
                 <div>
-                    <Link className="flex p-4 border-b" href="../dashboard">
-                        <Image src="/dltcode.png" alt="dashboard" width={90} height={20} />
-                        
-                    </Link>
+                    {isMenuOpen? ( 
+                        <Link className="flex p-4 py-10 border-b" href="" onClick={()=>setIsMenuOpen(false)}>
+                            <div className="m-7">
+                                <Image src="/menu.svg" alt="dashboard" width={40} height={20} />
+                            </div>
+                        </Link>
+                    ) : (
+                        <Link className="flex p-4 border-b" href="../dashboard">
+                            <Image src="/dltcode.png" alt="dashboard" width={90} height={20} />
+                        </Link>
+                    )}
                     
                     <article className="m-7">
-                        <button className="flex px-5 py-5 text-white md:hidden" onClick={()=>setIsMenuOpen(false)}>
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" className="w-6 h-6">
-                                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                            </svg>
-                        </button>
+
                         {/*Icons and links*/}
                         <Link className="flex px-3 py-5" onClick={() => setActiveLinkIndex(0)} href="../dashboard/">
                             {activeLinkIndex === 0 ? (
