@@ -1,9 +1,9 @@
 'use client';
 
 import { UserContext } from "@/app/context/UserContext";
-import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
+import { useRouter } from 'next/navigation';
 
 interface Document {
     id: number;
@@ -13,10 +13,20 @@ interface Document {
     downloadLink: string;
 }
 
-const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
+const DocumentsTable: React.FC<{ documents: Document[]; download: (docId: number) => void; isDownloading: boolean }> = ({ documents, download, isDownloading }) => {
     const { usuario } = useContext(UserContext);
+    const router = useRouter();
+
+    const handleDownloadClick = (docId: number) => {
+        //  if (usuario?.premium) {
+        download(docId);
+        /*  } else {
+            router.push('/premium');
+        }*/
+    };
+
     return (
-        <div className="px-20 rounded-lg">
+        <div className="px-20 rounded-lg h-full overflow-auto">
             <table className="w-full bg-200 border">
                 <thead>
                     <tr className="bg-gray-200">
@@ -33,15 +43,9 @@ const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
                             <td className="px-4 py-2 border text-black">{doc.createdAt}</td>
                             <td className="px-4 py-2 border text-black">{doc.createdBy}</td>
                             <td className="px-4 py-2 border text-black">
-                                {usuario?.premium ? (
-                                    <a href={doc.downloadLink} className="text-blue-500 hover:underline" download>
-                                        Descargar
-                                    </a>
-                                ) : (
-                                    <Link href={'./premium'} className="text-blue-500 hover:underline">
-                                        Descargar
-                                    </Link>
-                                )}
+                                <button onClick={() => handleDownloadClick(doc.id)} className="text-blue-500 hover:underline" disabled={isDownloading}>
+                                    {isDownloading ? 'Descargando...' : 'Descargar'}
+                                </button>
                             </td>
                         </tr>
                     ))}
@@ -53,6 +57,7 @@ const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
 
 export default function Documents() {
     const [documents, setDocuments] = useState<Document[]>([]);
+    const [isDownloading, setIsDownloading] = useState(false);
     const { usuario } = useContext(UserContext);
 
     useEffect(() => {
@@ -77,14 +82,34 @@ export default function Documents() {
         }
     }, [usuario]);
 
+    const download = async (docId: number) => {
+        setIsDownloading(true);
+        try {
+            const response = await axios.post(`http://localhost:5000/word/${docId}/download/pdf`, {}, {
+                responseType: 'blob'
+            });
 
-
+            const url = window.URL.createObjectURL(new Blob([response.data], { type: 'application/pdf' }));
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `document_${docId}.pdf`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            alert('Documento descargado con éxito');
+        } catch (error) {
+            console.error("Error al descargar el documento:", error);
+            alert('Error al descargar el documento');
+        } finally {
+            setIsDownloading(false);
+        }
+    };
 
     return (
         <div className="flex h-screen flex-col items-center bg-gray-100">
             <h1 className="text-2xl font-bold my-4 text-black">Documentos Generados</h1>
-            <div className="w-full px-4">
-                <DocumentsTable documents={documents} />
+            <div className="w-full px-4 h-5/6 overflow-auto">
+                <DocumentsTable documents={documents} download={download} isDownloading={isDownloading} />
             </div>
         </div>
     );
