@@ -1,11 +1,10 @@
-"use client";
+'use client';
 
 import { UserContext } from "@/app/context/UserContext";
 import Link from "next/link";
 import { useState, useEffect, useContext } from "react";
+import axios from 'axios';
 
-
-// Definición de la estructura de datos de los documentos
 interface Document {
     id: number;
     name: string;
@@ -14,18 +13,10 @@ interface Document {
     downloadLink: string;
 }
 
-// Datos de ejemplo
-const exampleDocuments: Document[] = [
-    { id: 1, name: "Informe de Seguridad", createdAt: "2024-05-21", createdBy: "Juan Pérez", downloadLink: "/documents/informe-seguridad.docx" },
-    { id: 2, name: "Evaluación de Riesgos", createdAt: "2024-05-20", createdBy: "Ana Gómez", downloadLink: "/documents/evaluacion-riesgos.docx" },
-    { id: 3, name: "Análisis de Vulnerabilidades", createdAt: "2024-05-19", createdBy: "Luis Martínez", downloadLink: "/documents/analisis-vulnerabilidades.docx" },
-];
-
 const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
-
-    const {usuario}= useContext(UserContext);
+    const { usuario } = useContext(UserContext);
     return (
-        <div className=" px-20 rounded-lg">
+        <div className="px-20 rounded-lg">
             <table className="w-full bg-200 border">
                 <thead>
                     <tr className="bg-gray-200">
@@ -42,13 +33,15 @@ const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
                             <td className="px-4 py-2 border text-black">{doc.createdAt}</td>
                             <td className="px-4 py-2 border text-black">{doc.createdBy}</td>
                             <td className="px-4 py-2 border text-black">
-                                {
-                                    usuario?.premium ? <a href={doc.downloadLink} className="text-blue-500 hover:underline" download>
-                                    Descargar
-                                </a> :  <Link href={'./premium'} className="text-blue-500 hover:underline" download>
-                                    Descargar
-                                </Link>
-                                }
+                                {usuario?.premium ? (
+                                    <a href={doc.downloadLink} className="text-blue-500 hover:underline" download>
+                                        Descargar
+                                    </a>
+                                ) : (
+                                    <Link href={'./premium'} className="text-blue-500 hover:underline">
+                                        Descargar
+                                    </Link>
+                                )}
                             </td>
                         </tr>
                     ))}
@@ -60,12 +53,32 @@ const DocumentsTable: React.FC<{ documents: Document[] }> = ({ documents }) => {
 
 export default function Documents() {
     const [documents, setDocuments] = useState<Document[]>([]);
+    const { usuario } = useContext(UserContext);
 
     useEffect(() => {
-        // Aquí se puede hacer la llamada a la API para obtener los documentos
-        // Por ahora, usamos datos de ejemplo
-        setDocuments(exampleDocuments);
-    }, []);
+        const fetchDocuments = async (userId: number) => {
+            try {
+                const response = await axios.get(`http://localhost:5000/users/${userId}/words`);
+                const fetchedDocuments = response.data.map((doc: any) => ({
+                    id: doc.id,
+                    name: doc.name,
+                    createdAt: new Date(doc.createdAt).toISOString().split('T')[0],
+                    createdBy: doc.createdBy,
+                    downloadLink: doc.downloadLink,
+                }));
+                setDocuments(fetchedDocuments);
+            } catch (error) {
+                console.error("Error fetching documents:", error);
+            }
+        };
+
+        if (usuario?.id !== undefined) {
+            fetchDocuments(usuario.id);
+        }
+    }, [usuario]);
+
+
+
 
     return (
         <div className="flex h-screen flex-col items-center bg-gray-100">
