@@ -1,0 +1,43 @@
+.fadeIn {
+    animation: fadeIn 1s ease-in-out;
+  }
+  
+  .chatBox {
+    animation: slideIn 0.5s ease-out;
+  }
+  
+  @keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+  
+  @keyframes slideIn {
+    0% { transform: translateY(20px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+  }
+  
+  .expandButton {
+    transition: all 0.5s ease;
+    width: 30px;
+    height: 30px;
+  }
+  
+  .expandButtonHover {
+    width: 150px;
+    height: 50px;
+  }
+  
+  .newChatButton {
+    cursor: pointer;
+    background-color: #1e3a8a; /* blue-800 */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .newChatButton:hover {
+    background-color: #1d4ed8; /* blue-700 */
+    transform: scale(1.05);
+  }
+  
