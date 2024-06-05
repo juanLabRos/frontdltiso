@@ -113,13 +113,13 @@ export default function Wizzard() {
             ) : (
                 <>
                     <div className="flex gap-4 mt-4">
-                        <Link href="/documentSGSI">
+                        <Link href="documentSGSI">
                             <div className="flex flex-col items-center cursor-pointer">
                                 <Image src={'/word_icon.svg'} width={80} height={80} alt="Document SGSI" />
                                 <span>Document SGSI</span>
                             </div>
                         </Link>
-                        <Link href="/documentPSI">
+                        <Link href="documentPSI">
                             <div className="flex flex-col items-center cursor-pointer">
                                 <Image src={'/word_icon.svg'} width={80} height={80} alt="Document PSI" />
                                 <span>Document PSI</span>
