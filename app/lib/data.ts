@@ -1,4 +1,5 @@
 'use server'
+import { UserContext } from "@/app/context/UserContext";
 
 async function backConnect() {
     const data = {
@@ -106,6 +107,21 @@ export async function chatMessages(text:string,email:string): Promise<string>{
     return data.generatedText
 } 
 
+export async function userData(username:string,email:string,password:string,): Promise<string>{
+    
+    const response = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
+        method: 'POST',
+        body: JSON.stringify({ username,email,password}),
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    });
+    const data = await response.json();
+    console.log(data.generatedDatas)
+    return data.generatedDatas
+} 
+
+
 export async function payPremium(email:string):Promise<string>{
     const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/payment`, {
         method: 'POST',
@@ -124,3 +140,42 @@ export async function changePremium(email:string):Promise<boolean>{
       const result= await res.json()
       return result
 }
+
+export async function getUserById(id:number): Promise<number>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ id })
+        
+    });
+
+    const data = await res.json();
+    console.log(data)
+    return data;
+    
+
+}
+
+
+
+export async function updateUser (
+    id: number|undefined, 
+    username?:string,
+    fullname?: string,
+    email?: string
+): Promise<string>{
+    
+
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/` + id  , {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify( {username,  fullname, email} )
+        
+    });
+
+    const data = await res.json();
+    console.log('RESPUESTA AL BACK')
+    console.log(data)
+    return data;
+} 
