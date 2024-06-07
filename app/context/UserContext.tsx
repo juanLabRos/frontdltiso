@@ -9,9 +9,11 @@ export type UserData = {
   id?: number;
   email: string;
   password: string;
+  newpassword: string;
   username: string;
   fullname: string;
   premium: boolean;
+  userPhoto: string;
   // Agrega más propiedades según sea necesario
 };
 
@@ -41,8 +43,10 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
         username: user?.username ?? '',
         fullname: user?.fullname ?? '',
         password: user?.password ?? '',
+        newpassword: user?.newpassword ?? '',
         email: user?.email ?? '',
-        premium: user?.premium ? true : false
+        premium: user?.premium ? true : false,
+        userPhoto: user?.userphoto ?? ''
       });
     }
   }, [session]);

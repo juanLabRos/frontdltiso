@@ -1,5 +1,4 @@
 'use server'
-import { UserContext } from "@/app/context/UserContext";
 
 async function backConnect() {
     const data = {
@@ -148,34 +147,19 @@ export async function getUserById(id:number): Promise<number>{
         body: JSON.stringify({ id })
         
     });
-
     const data = await res.json();
     console.log(data)
     return data;
-    
-
 }
 
 
-
-export async function updateUser (
-    id: number|undefined, 
-    username?:string,
-    fullname?: string,
-    email?: string
-): Promise<string>{
-    
-
-
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/` + id  , {
+export async function updateUser (id:number|undefined,  username?:string, fullname?:string, email?:string, actualPassword?:string, newPassword?:string, userPhoto?:string): Promise<string>{
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_URL}/users/`+id , {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify( {username,  fullname, email} )
+        body: JSON.stringify( {username,  fullname, email, actualPassword, newPassword, userPhoto} )
         
     });
-
     const data = await res.json();
-    console.log('RESPUESTA AL BACK')
-    console.log(data)
     return data;
 } 

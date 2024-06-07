@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useContext } from "react";
-import { validateEmail } from "@/app/utils/validateEmail";
-import { validatePassword } from "@/app/utils/validatePassword";
+        
+        
 import Image from "next/image";
 import user_img from "@/public/user_img.svg";
 import InputForm from "@/app/components/Settings/InputFormSettings";
@@ -9,6 +9,8 @@ import ButtonCustom from "@/app/components/Settings/ButtonCustomSettings";
 
 import { updateUser } from "@/app/lib/data";
 import { UserContext } from "@/app/context/UserContext";
+import { validateEmail } from "@/app/utils/validateEmail";
+import { validatePassword } from "@/app/utils/validatePassword";
 
 export default function Settings() {
   
@@ -17,14 +19,12 @@ export default function Settings() {
 
   const [newUsername, setNewUsername] = useState("");
   const [usernameError, setUsernameError] = useState("");
-
-  const [fullName, setFullName] = useState("");
   const [newFullname, setNewFullname] = useState("");
 
   const [newEmail, setNewEmail] = useState("");
   const [emailError, setEmailError] = useState("");
 
-  const [pass, setPass] = useState("");
+  const [actualPass, setPass] = useState("");
   const [newPass, setNewPass] = useState("");
   const [repeatPass, setRepeatPass] = useState("");
   const [passError, setPassError] = useState(""); 
@@ -37,7 +37,7 @@ export default function Settings() {
   };
 
   const handleFullNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFullName(e.target.value);
+    setNewFullname(e.target.value);
   };
 
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -65,35 +65,35 @@ export default function Settings() {
 
     if (usuario !== null) {
       
-    // Verificar nuevo nombre usuario
+      // Verificar nuevo nombre
       if (newUsername !== "") {
         if (newUsername.toUpperCase() !== usuario?.username.toUpperCase()) {
           usuario.username = newUsername;
+          console.log(usuario.username)
         } else{
           isValid = false;
           setUsernameError("El nombre de usuario introducido ya existe");  
         }
       }
-
-    // Verificar nuevo correo
+      
+      // Verificar nuevo correo
       if (newEmail !== "") {
         if(newEmail !== usuario?.email ){
           if (!validateEmail(newEmail)) {
             setEmailError("Debe de ingresar un email válido");
           } else {
             usuario.email = newEmail;
-
+          console.log(usuario.email)
           }
         } else{
           isValid = false;
           setEmailError("El email introducido ya existe")  
-
         }
       }
 
-    // Verificar nueva contraseña
-      if ( newPass !== "") {
-        if(newPass !== usuario?.password ){
+      // Verificar nueva contraseña
+      if (newPass !== "") {
+        if (newPass !== actualPass) {
           if (!validatePassword(newPass)) {
             isValid = false;
             setNewPassError('La contraseña debe contener al menos 8 caracteres (letras y números)');
@@ -101,37 +101,39 @@ export default function Settings() {
             if (newPass !== repeatPass) {
               isValid = false;
               setNewPassError("La nueva contraseña y la repetición no coinciden.");
+              console.log(newPass);
+              console.log(repeatPass);
             } else {
-              if(pass !== usuario?.password){
+              if (actualPass== "") {
                 isValid = false;
-                setPassError("Contraseña incorrecta");
-                console.log(pass)
+                setPassError("Debe introducir la contraseña actual");
+              } else {
+                usuario.password = actualPass;
+                usuario.newpassword = newPass;
+                console.log("Nueva contraseña: " + newPass);
+                console.log("Contraseña actual: " + usuario.password);
+                console.log("Nueva contraseña back: " + usuario.newpassword); 
               }
-              usuario.password = newPass;
-              console.log(newPass)
-            
+              
             }
           }
         } else {
           setNewPassError('La nueva contraseña debe ser diferente a la actual');
-
-        } 
-      } 
-
-    // Verificar nuevo nombre completo
-      if (fullName !== ""){
-        if(newFullname !== usuario?.fullname){
-          usuario.fullname = newFullname
         }
       }
+      
+      //Verificar nombre completo
+      if (newFullname !== ""){
+        usuario.fullname = newFullname
+      }
 
-      updateUser(usuario.id, usuario.username, usuario.fullname, usuario.email)
+      updateUser(usuario.id, usuario.username, usuario.fullname, usuario.email, usuario.password, usuario.newpassword)
       setSaveStatus("¡Guardado!");
+
     }
 
     if (!isValid) {
-      setSaveStatus("Error al guardar datos");
-
+      setSaveStatus("Error al guardar datos"); 
     }
 
   };
@@ -195,10 +197,10 @@ export default function Settings() {
             <div className="mb-4">
               <InputForm
                 label="Nombre completo: "
-                name="fullName"
-                placeholder={usuario ? usuario.fullname : newFullname}
+                name="newFullname"
+                placeholder={usuario ? usuario?.fullname : ""}
                 type="text"
-                value={fullName}
+                value={newFullname}
                 onChange={handleFullNameChange}
               />
             </div>
@@ -208,7 +210,7 @@ export default function Settings() {
                 name="actualPassword"
                 placeholder="Introduzca su actual contraseña"
                 type="password"
-                value={pass}
+                value={actualPass}
                 onChange={handlePassChange}
               />
               {passError && <span className="text-red-500">{passError}</span>}
