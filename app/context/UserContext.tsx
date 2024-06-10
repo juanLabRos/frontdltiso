@@ -5,11 +5,15 @@ import { useRouter } from 'next/navigation';
 import { createContext, useState, FC, ReactNode, useEffect } from 'react';
 
 // Definición de tipos para la información del usuario
-type UserData = {
+export type UserData = {
   id?: number;
   email: string;
+  password: string;
+  newpassword: string;
   username: string;
-  premium:boolean;
+  fullname: string;
+  premium: boolean;
+  userPhoto: string;
   // Agrega más propiedades según sea necesario
 };
 
@@ -37,8 +41,12 @@ export const UserProvider: FC<{ children: ReactNode }> = ({ children }) => {
       setUsuario({
         id: user?.id, 
         username: user?.username ?? '',
+        fullname: user?.fullname ?? '',
+        password: user?.password ?? '',
+        newpassword: user?.newpassword ?? '',
         email: user?.email ?? '',
         premium: user?.premium ? true : false,
+        userPhoto: user?.userphoto ?? ''
       });
     }
   }, [session]);

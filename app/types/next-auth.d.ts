@@ -7,11 +7,13 @@ declare module "next-auth" {
         premium: boolean;
         id: number,
         username: string,
-        password: string,
-        email: string,
         fullname: string,
+        password: string,
+        newpassword: string,
+        email: string,
         usertype: string,
         company: string,
+        userphoto: string,
         token: string;
         error:[];
       }
